@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="Docker" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" notifyAboutMissingVendor="false" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/ADOdb-5.22.8/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Umbriel24&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Umbriel24/Php_Uni-progetti.git&quot;,
+    &quot;accountId&quot;: &quot;05b48712-5c2f-4acc-aad0-ecadeccb9144&quot;
+  }
+}</component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2uy3GBcjjexZ1qzCnFoic1lTSXn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Vario/PhpDockerFile/progetto1&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mariadb&quot;
+    ]
+  }
+}</component>
+  <component name="Push.Settings">
+    <force-push-targets>
+      <force-push-target remote-path="origin" branch="ApiTemp" />
+    </force-push-targets>
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Vario\PhpDockerFile\progetto1" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Vario\PhpDockerFile\progetto1" />
+      <recent name="D:\Vario\PhpDockerFile\progetto2\api" />
+      <recent name="D:\Vario\PhpDockerFile\progetto2\CartellaDB" />
+      <recent name="D:\Vario\PhpDockerFile\progetto2" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
+        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="" />
+      <created>1743206889467</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1743206889467</updated>
+      <workItem from="1743206890753" duration="4249000" />
+      <workItem from="1743261340824" duration="7060000" />
+      <workItem from="1743346165986" duration="3899000" />
+      <workItem from="1743459271991" duration="10148000" />
+      <workItem from="1743512288022" duration="11027000" />
+      <workItem from="1743536540476" duration="4249000" />
+      <workItem from="1743621983236" duration="5919000" />
+      <workItem from="1743685399197" duration="11681000" />
+      <workItem from="1743706405695" duration="9156000" />
+      <workItem from="1743779183311" duration="8453000" />
+      <workItem from="1743854778418" duration="13872000" />
+      <workItem from="1743892080681" duration="6666000" />
+      <workItem from="1743941083453" duration="11624000" />
+      <workItem from="1744026908095" duration="14787000" />
+      <workItem from="1744060412087" duration="12204000" />
+      <workItem from="1744114061991" duration="4834000" />
+      <workItem from="1744124742325" duration="8210000" />
+      <workItem from="1744138120816" duration="4102000" />
+      <workItem from="1744142582992" duration="1187000" />
+      <workItem from="1744144738897" duration="1613000" />
+      <workItem from="1744155791265" duration="1693000" />
+      <workItem from="1744159362819" duration="1078000" />
+      <workItem from="1744236937933" duration="1770000" />
+    </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1743266652244</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1743266652244</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Pseudo login">
+      <option name="closed" value="true" />
+      <created>1743348372939</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743348372939</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Login con stampa di saldo">
+      <option name="closed" value="true" />
+      <created>1743350072606</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743350072606</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix  di troppa roba help&#10;&#10;-- Messe funzioni globali&#10;-- Divise le funzionalità">
+      <option name="closed" value="true" />
+      <created>1743466740531</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743466740531</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix  di troppa roba ancora">
+      <option name="closed" value="true" />
+      <created>1743469745880</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1743469745880</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Aggiunta lista di movimenti">
+      <option name="closed" value="true" />
+      <created>1743513356070</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1743513356070</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Homepage diversificata tra esercente e acquirente">
+      <option name="closed" value="true" />
+      <created>1743516194113</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1743516194113</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1743517301463</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1743517301463</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Quasi finito di mettere transazioni">
+      <option name="closed" value="true" />
+      <created>1743520100985</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1743520100985</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1743536745905</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1743536745905</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Prodotto semi finito">
+      <option name="closed" value="true" />
+      <created>1743539570796</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1743539570796</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Login e registrazione sito1 fatto">
+      <option name="closed" value="true" />
+      <created>1743625104545</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1743625104545</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Robe - Da aggiungere il check dei treni per l'inserimento in orario">
+      <option name="closed" value="true" />
+      <created>1743629237279</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1743629237279</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Stampa di convogli liberi e locomotive libere">
+      <option name="closed" value="true" />
+      <created>1743688449870</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1743688449870</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Stampa di carrozze, convogli e locomotrici libere">
+      <option name="closed" value="true" />
+      <created>1743691441463</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1743691441463</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1743694450150</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1743694450150</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Non ci sto a capi niente">
+      <option name="closed" value="true" />
+      <created>1743696870640</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1743696870640</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Quasi completo il create - manca il riferimento al table convoglio in ref_convoglio in carrozza">
+      <option name="closed" value="true" />
+      <created>1743711996955</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1743711996955</updated>
+    </task>
+    <task id="LOCAL-00019" summary="polkodioooooooooo">
+      <option name="closed" value="true" />
+      <created>1743715368265</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1743715368265</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Pre-Transazione">
+      <option name="closed" value="true" />
+      <created>1743782444789</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1743782444789</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Creazione convoglio e eliminazione convoglio perfettamente funzionante">
+      <option name="closed" value="true" />
+      <created>1743787511238</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743787511238</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Treno creabile">
+      <option name="closed" value="true" />
+      <created>1743860351416</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1743860351416</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Save temp">
+      <option name="closed" value="true" />
+      <created>1743864310303</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1743864310303</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Treni creabili">
+      <option name="closed" value="true" />
+      <created>1743869037276</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1743869037276</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Corsa eliminabile e creabile correttamente">
+      <option name="closed" value="true" />
+      <created>1743896160129</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1743896160129</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Corsa modificabile. Da aggiungere il percorso dalla stazione n alto al n basso.">
+      <option name="closed" value="true" />
+      <created>1743943552032</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1743943552032</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Corsa modificabile e corsa creabile dalla stazione grande alla minore">
+      <option name="closed" value="true" />
+      <created>1743944872668</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1743944872668</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1743948282751</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1743948282751</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fix">
+      <option name="closed" value="true" />
+      <created>1743950810471</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1743950810471</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Amministrazione funzioni implementate">
+      <option name="closed" value="true" />
+      <created>1744030828196</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1744030828196</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Amministrazione funzioni implementate e mostrate in Esercizio">
+      <option name="closed" value="true" />
+      <created>1744031224763</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1744031224763</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Manca il collegamento API">
+      <option name="closed" value="true" />
+      <created>1744037052288</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1744037052288</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Manca il collegamento API">
+      <option name="closed" value="true" />
+      <created>1744040569329</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1744040569329</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Non so che cazzo sto">
+      <option name="closed" value="true" />
+      <created>1744069098586</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1744069098586</updated>
+    </task>
+    <task id="LOCAL-00035" summary="POGGEROLA">
+      <option name="closed" value="true" />
+      <created>1744069590010</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1744069590010</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Biscotti">
+      <option name="closed" value="true" />
+      <created>1744072355028</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1744072355028</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Santo iddio">
+      <option name="closed" value="true" />
+      <created>1744127471301</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1744127471301</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Commit finale &#10;Inserimento nel sito">
+      <option name="closed" value="true" />
+      <created>1744131023902</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1744131023902</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Docker">
+      <option name="closed" value="true" />
+      <created>1744140293590</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1744140293590</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Docker">
+      <option name="closed" value="true" />
+      <created>1744141291669</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1744141291669</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Login e registrazione sito1 fatto" />
+    <MESSAGE value="Robe - Da aggiungere il check dei treni per l'inserimento in orario" />
+    <MESSAGE value="Stampa di convogli liberi e locomotive libere" />
+    <MESSAGE value="Stampa di carrozze, convogli e locomotrici libere" />
+    <MESSAGE value="Non ci sto a capi niente" />
+    <MESSAGE value="Quasi completo il create - manca il riferimento al table convoglio in ref_convoglio in carrozza" />
+    <MESSAGE value="polkodioooooooooo" />
+    <MESSAGE value="Pre-Transazione" />
+    <MESSAGE value="Creazione convoglio e eliminazione convoglio perfettamente funzionante" />
+    <MESSAGE value="Treno creabile" />
+    <MESSAGE value="Save temp" />
+    <MESSAGE value="Treni creabili" />
+    <MESSAGE value="Corsa eliminabile e creabile correttamente" />
+    <MESSAGE value="Corsa modificabile. Da aggiungere il percorso dalla stazione n alto al n basso." />
+    <MESSAGE value="Corsa modificabile e corsa creabile dalla stazione grande alla minore" />
+    <MESSAGE value="Fix" />
+    <MESSAGE value="Amministrazione funzioni implementate" />
+    <MESSAGE value="Amministrazione funzioni implementate e mostrate in Esercizio" />
+    <MESSAGE value="Manca il collegamento API" />
+    <MESSAGE value="Non so che cazzo sto" />
+    <MESSAGE value="POGGEROLA" />
+    <MESSAGE value="Biscotti" />
+    <MESSAGE value="Santo iddio" />
+    <MESSAGE value="Commit finale &#10;Inserimento nel sito" />
+    <MESSAGE value="Docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docker" />
+  </component>
+</project>
