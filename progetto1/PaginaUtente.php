@@ -9,6 +9,8 @@ require_once __DIR__ . '/CartellaFunzioni/FunzioniConvoglio.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniLocomotrice.php';
 
 $id_utente = $_COOKIE['id_utente'] ?? null;
+$nome_utente = $_COOKIE['nome'] ?? null;
+$email = $_COOKIE['email'] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@ $id_utente = $_COOKIE['id_utente'] ?? null;
 
 
 <body>
-<h1>Ciao, <?php  echo $id_utente ?></h1>
+<h1>Ciao, <?php  echo $nome_utente ?></h1>
 <h2> I tuoi biglietti</h2>
 <?php PrintaBigliettiByIdUtente($id_utente) ?>
 <h2>Prenota biglietto</h2>

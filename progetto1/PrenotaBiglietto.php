@@ -1,5 +1,9 @@
 ﻿<?php
 
+$id_utente = $_COOKIE['id_utente'] ?? null;
+$nome_utente = $_COOKIE['nome'] ?? null;
+$email = $_COOKIE['email'] ?? null;
+
 require_once __DIR__ . '/Biglietto/CreaBiglietto.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniCarrozze.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniStazione.php';
@@ -7,6 +11,7 @@ require_once __DIR__ . '/CartellaFunzioni/FunzioniSubtratta.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniTreno.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniConvoglio.php';
 require_once __DIR__ . '/CartellaFunzioni/FunzioniLocomotrice.php';
+
 
 if(isset($_GET['payment_result'])) {
     $decoded = urldecode($_GET['payment_result']);

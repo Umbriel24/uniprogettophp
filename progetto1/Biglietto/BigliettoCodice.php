@@ -69,9 +69,11 @@ try {
         echo '<input type="hidden" name="url_inviante" value="' . $_SERVER['HTTP_REFERER'] .  '">';
 
 
-        echo '<h2>Importante - Devi avere un acconnt registrato su PayStream</h2>';
-        echo '<p>Puoi registrarti qui <a href="http://' . $ip . '/progetto2/registrazione.php ">TODO</a></p>';
-        echo '<label>Inserisci Email <input type="email" name="utenteMail" required> </label>';
+        echo '<h2>Importante - Devi avere un account registrato su PayStream</h2>';
+        echo '<p>Per registrarti <a href="http://' . $ip . '/progetto2/registrazione.php ">Clicca qui</a></p>';
+        echo '<label>Inserisci Email del tuo account Paystream <input type="email" name="utenteMail" required> </label>';
+        echo '<br>';
+        echo '<label>Inserisci password di paySteam <input type="password" name="password" required> </label>';
         echo '<br>';
         echo '<button type="submit">Acquista biglietto con PayStream</button>';
         echo '</form>';

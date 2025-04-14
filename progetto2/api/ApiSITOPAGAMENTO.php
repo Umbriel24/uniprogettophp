@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $treno_id = $data['treno_id'] ?? null;
         $prezzoBiglietto = $data['prezzo'] ?? null;
         $utenteEmail = $data['utenteMail'] ?? null;
+        $password = $data['password'] ?? null;
         $esercenteEmail = $data['esercente'] ?? null;
         $url_inviante = $data['url_inviante'] ?? null;
 
@@ -35,7 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Errore. Esercente non è arrivato  spedito nel json");
         } else if ($url_inviante == null) {
             throw new Exception("Errore. URL non è arrivato  spedito nel json");
+        } else if ($password == null) {
+            throw new Exception("Errore, non è arrivata la password nel json");
+        }
 
+        if(!CheckEsistenzaEmailPassword($utenteEmail, $password)){
+            throw new Exception("Errore. Corrispondenza email-password non valida");
         }
 
 

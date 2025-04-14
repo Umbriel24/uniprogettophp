@@ -1,6 +1,5 @@
 ﻿<?php
 require_once __DIR__ . '/../CartellaDB/database.php';
-require_once __DIR__ . '/../CartellaDB/database.php';
 require_once __DIR__ . '/FunzioniCarrozze.php';
 require_once __DIR__ . '/FunzioniStazione.php';
 require_once __DIR__ . '/FunzioniSubtratta.php';

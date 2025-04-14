@@ -9,3 +9,29 @@ function CheckEsistenzaUtenteByEmail($email){
         return true;
     }
 }
+
+function CheckEsistenzaEmailPassword($email, $password){
+
+    try {
+        $query = "SELECT * FROM progetto2_Utente
+                WHERE
+                (
+                    (email = '$email')
+                    AND
+                    (password = '$password')
+                )";
+
+        $result = EseguiQuery($query);
+
+        if ($result->RecordCount() == 0) {
+            echo 'Login sbagliato';
+            throw new Exception("Errore nel login");
+        }
+        else return true;
+
+    } catch (Exception $e) {
+        echo 'Login sbagliato, Riprova';
+    }
+
+    return false;
+}

@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/ComandiSQL/SQLCreazioneUtente.php';
+require_once __DIR__ . '/CartellaUtente/SQLCreazioneUtente.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -34,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 default:
 
                     setcookie('id_utente', $risultato['id_utente'], time() + 3600);
+                    setcookie('nome', $risultato['nome'], time() + 3600);
+                    setcookie('email', $risultato['email'], time() + 3600);
+
                     if($risultato['id_utente'] <= 0){
                         die("Id non trovato");
                     }
