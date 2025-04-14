@@ -10,7 +10,7 @@ require_once __DIR__ . '/FunzioniLocomotrice.php';
 
 function getCarrozzeByAttivita($attivita)
 {
-    $query = "SELECT * FROM progetto1_Carrozza WHERE in_attività = '$attivita'";
+    $query = "SELECT * FROM progetto1_Carrozza WHERE in_attivita = '$attivita'";
     return EseguiQuery($query);
 }
 
@@ -46,7 +46,7 @@ function CheckCarrozzaAttività($id_carrozza)
     $query = "SELECT * FROM progetto1_Carrozza WHERE codice_carrozza = '$id_carrozza'";
     $result = EseguiQuery($query);
     while ($row = $result->FetchRow()) {
-        if ($row['in_attività'] == 'si') throw new Exception("Errore:  " . $id_carrozza . " Carrozza attiva. Smantella questo convoglio o scegli un'altra carrozza");
+        if ($row['in_attivita'] == 'si') throw new Exception("Errore:  " . $id_carrozza . " Carrozza attiva. Smantella questo convoglio o scegli un'altra carrozza");
     }
 }
 
@@ -68,7 +68,7 @@ function UpdateAttivitàCarrozza($attivita, $id_carrozza)
 {
     echo '<br>' . $id_carrozza . ' Problema QUI';
     if ($attivita != 'si' && $attivita != 'no') die('Attività settata non consentita.');
-    $query = "UPDATE progetto1_Carrozza SET in_attività = '$attivita' WHERE codice_carrozza = '$id_carrozza'";
+    $query = "UPDATE progetto1_Carrozza SET in_attivita = '$attivita' WHERE codice_carrozza = '$id_carrozza'";
     return EseguiQuery($query);
 }
 
