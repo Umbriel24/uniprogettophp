@@ -70,7 +70,7 @@ try {
 
 
         echo '<h2>Importante - Devi avere un acconnt registrato su PayStream</h2>';
-        echo '<p>Puoi registrarti qui <a href="http://' . $ip . '/www.progetto2/registrazione.php ">TODO</a></p>';
+        echo '<p>Puoi registrarti qui <a href="http://' . $ip . '/progetto2/registrazione.php ">TODO</a></p>';
         echo '<label>Inserisci Email <input type="email" name="utenteMail" required> </label>';
         echo '<br>';
         echo '<button type="submit">Acquista biglietto con PayStream</button>';

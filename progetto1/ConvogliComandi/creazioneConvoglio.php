@@ -41,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         //In ordine
         // Comp.Locomotrice -> in_attività diventa si
-        UpdateAttivitàLocomotrice($locomotrice);
+        UpdateAttivitaLocomotrice($locomotrice);
         echo 'Attività locomotice updatata nel db';
 
         $posti_a_sedere_complessivi = CalcolaPostiASedereComplessivi($carrozze);
