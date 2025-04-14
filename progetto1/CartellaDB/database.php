@@ -7,15 +7,22 @@ if(!function_exists('getConnessioneDb')){
     include  __DIR__ . '/../ADOdb-5.22.8/adodb.inc.php';
     date_default_timezone_set('Europe/Rome');
 
+
+
     function getConnessioneDb(){
         static $db = null;
+
+        $argHost = 'localhost';
+        $argUsername = 'um.gargiulo';
+        $argPassword = 'c7Rk9p';
+        $argDatabase = 'um_gargiulo';
 
         if($db === null){
             $driver = 'mysqli';
             $db = newAdoConnection($driver);
 
 
-            $db->connect('localhost', 'root', '', 'um_gargiulo');
+            $db->connect($argHost, $argUsername, $argPassword, $argDatabase);
 
             if (!$db->isconnected()) {
                 echo "Errore di connessione al database: " . $db->ErrorMsg();

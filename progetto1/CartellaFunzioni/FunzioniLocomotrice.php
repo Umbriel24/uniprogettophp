@@ -11,7 +11,7 @@ function getLocomotriceByAttivita($attivita)
     $query = "SELECT * FROM progetto1_ComposizioneLocomotrice as c
             LEFT JOIN progetto1_Locomotiva as l on c.riferimentoLocomotiva = l.id_locomotrice
             LEFT JOIN progetto1_Automotrice as a on c.riferimentoAutomotiva = a.id_automotrice
-            WHERE in_attività = '$attivita'";
+            WHERE in_attivita = '$attivita'";
     return EseguiQuery($query);
 }
 
@@ -82,11 +82,11 @@ function stampaLocomotriciInattive($locomotriciInattive)
     }
 }
 
-function UpdateAttivitàLocomotrice($codice_locomotrice)
+function UpdateAttivitaLocomotrice($codice_locomotrice)
 {
     $id_da_updatare = getId_locomotrice_By_Codice($codice_locomotrice);
     if($id_da_updatare != 0){
-        $query2 = "UPDATE progetto1_ComposizioneLocomotrice SET in_attività = 'si' WHERE id_locomotrice = $id_da_updatare";
+        $query2 = "UPDATE progetto1_ComposizioneLocomotrice SET in_attivita = 'si' WHERE id_locomotrice = $id_da_updatare";
         return EseguiQuery($query2);
     } else Throw new Exception("Errore: Nessuna locomotrice selezionata per l'update. " . $id_da_updatare . " E' l'id da updatare e " . $codice_locomotrice . " ");
 }
@@ -102,7 +102,7 @@ function checkLocomotriceInattivaByCodice($codice)
     while($row = $result->FetchRow()){
         if($row['codice_locomotiva'] == $codice || $row["codice_automotrice"] == $codice){
             //La row è quella
-            if($row['in_attività'] == 'si') Throw new Exception("Errore:" . $codice . " Locomotrice già attiva");
+            if($row['in_attivita'] == 'si') Throw new Exception("Errore:" . $codice . " Locomotrice già attiva");
         }
     }
 }
