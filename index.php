@@ -1,6 +1,6 @@
 <?php
 function getServerIP() {
-    $ip = @file_get_contents("http://169.254.169.254/latest/meta-data/public-ipv4");
+    $ip = @file_get_contents('https://api.ipify.org');
     return $ip !== false ? trim($ip) : 'localhost';
 }
 
