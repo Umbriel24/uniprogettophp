@@ -61,7 +61,7 @@ try {
 
 
         //hidden per il POST //TODO metti api sito uni
-        echo '<form action="http://'. $ip . '/www/progetto2/api/ApiSITOPAGAMENTO.php" method="POST">';
+        echo '<form action="http://'. $ip . '/progetto2/api/ApiSITOPAGAMENTO.php" method="POST">';
         echo '<input type="hidden" name="treno_id" value="' . $treno_id . '">';
         echo '<input type="hidden" name="prezzo" value="' . $prezzoBiglietto . '">';
         echo '<input type="hidden" name="esercente" value="' . $esercenteMail . '">';
@@ -70,7 +70,7 @@ try {
 
 
         echo '<h2>Importante - Devi avere un acconnt registrato su PayStream</h2>';
-        echo '<p>Puoi registrarti qui <a href="http://18.199.237.122/progetto2/registrazione.php ">TODO</a></p>';
+        echo '<p>Puoi registrarti qui <a href="http://' . $ip . '/progetto2/registrazione.php ">TODO</a></p>';
         echo '<label>Inserisci Email <input type="email" name="utenteMail" required> </label>';
         echo '<br>';
         echo '<button type="submit">Acquista biglietto con PayStream</button>';
