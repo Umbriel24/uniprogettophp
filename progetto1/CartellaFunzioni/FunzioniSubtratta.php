@@ -48,27 +48,27 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
 
             $id_rif_treno = $id_treno;
 
-            echo 'Arriva al rigo 66';
+
 
             $querySubtratta = "INSERT INTO progetto1_Subtratta(
                                 km_totali, ora_di_partenza, ora_di_arrivo, id_rif_treno, 
                                 id_stazione_partenza, id_stazione_arrivo)
             VALUES($kmTotaliSUBTRATTA, '$dataOra_partenzaSubtratta', '$dataOra_arrivoSUBTRATTA', 
             $id_rif_treno, $id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA)";
-            echo 'Arriva al rigo 76';
+ ;
 
             //L'arrivo diventa orario di andata della prossima subtratta.
 
             $resultQueryInserimento = EseguiQuery($querySubtratta);
-            echo 'Arriva al rigo 80';
+
             if (!$resultQueryInserimento) {
                 throw new Exception("Errore nella query rigo 77: " . $querySubtratta . '\n');
             }
 
             //SI SUPPONE IL TRENO STIA FERMO 2 MINUTI IN STAZIONE
-            echo 'Arriva al rigo 89';
+
             $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataOra_arrivoSUBTRATTA . ' +2 minutes'));
-            echo 'Arriva al rigo 91';
+
 
         }
 
@@ -98,27 +98,27 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
             Check_CollisioneCorsaTreno($id_stazione_arrivoSUBTRATTA, $id_stazione_partenzaSUBTRATTA, $dataOra_arrivoSUBTRATTA, $dataOra_partenzaSubtratta);
             $id_rif_treno = $id_treno;
 
-            echo 'Arriva al rigo 66';
+
 
             $querySubtratta = "INSERT INTO progetto1_Subtratta(
                                 km_totali, ora_di_partenza, ora_di_arrivo, id_rif_treno, 
                                 id_stazione_partenza, id_stazione_arrivo)
             VALUES($kmTotaliSUBTRATTA, '$dataOra_partenzaSubtratta', '$dataOra_arrivoSUBTRATTA', 
             $id_rif_treno, $id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA)";
-            echo 'Arriva al rigo 76';
+
 
             //L'arrivo diventa orario di andata della prossima subtratta.
 
             $resultQueryInserimento = EseguiQuery($querySubtratta);
-            echo 'Arriva al rigo 80';
+
             if (!$resultQueryInserimento) {
                 throw new Exception("Errore nella query rigo 77: " . $querySubtratta . '\n');
             }
 
             //SI SUPPONE IL TRENO STIA FERMO 2 MINUTI IN STAZIONE
-            echo 'Arriva al rigo 89';
+
             $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataOra_arrivoSUBTRATTA . ' +2 minutes'));
-            echo 'Arriva al rigo 91';
+
         }
     }
 }
@@ -264,8 +264,9 @@ function StampaSubtrattePerStampaTreni()
             echo '<td>' . $stazione_partenza . '</td>';
             echo '<td>' . $stazione_arrivo . '</td>';
             echo '</tr>';
-
+            return true;
         }
+    return true;
 }
 
 

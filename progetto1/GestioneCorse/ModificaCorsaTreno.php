@@ -70,7 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $oraPart = $dataOra_partenza;
         $oraArr = $dataArrivo;
 
-        CheckEsistenzaConvoglioTrenoInQuellaGiornata($id_convoglio, $oraPart, $oraArr);
+        if(!CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPart, $oraArr)){
+            Throw new Exception("Errore,  c'è lo stesso treno che parte in meno di 3 ore.");
+        }
 
         //Creiamo nuove subtratte
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);

@@ -1,5 +1,11 @@
 <?php
+function getServerIP() {
+    $ip = @file_get_contents("http://169.254.169.254/latest/meta-data/public-ipv4");
+    return $ip !== false ? trim($ip) : 'localhost';
+}
 
+$ip = getServerIP();
+echo 'form action="http://' . $ip . '/www/progetto2/api/ApiSITOPAGAMENTO.php" method="POST"';
 ?>
 
 
