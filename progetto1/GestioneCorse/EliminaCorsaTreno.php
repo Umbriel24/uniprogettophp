@@ -20,9 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         EliminaCorsaSubtrattaByIdTreno($id_treno);
 
         EliminaTreno($id_treno);
-        echo 'Treno eliminato correttamente';
-        echo '<br>';
+        $message =  'Treno eliminato correttamente';
         echo '<a href="../PaginaEsercizioGestioneCorse.php">Torna Indietro </a>';
+        header('Location: ../PaginaEsercizioGestioneCorse.php');
 
         CommittaTransazione();
 

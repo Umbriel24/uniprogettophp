@@ -14,14 +14,14 @@ function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
 
     try {
         IniziaTransazione();
-        echo 'Si bugga quii';
+
         $posto_biglietto = UpdataPostiTreno($id_treno);
         if($posto_biglietto == null){
             throw new Exception("Errore. Impossibile creare il biglietto");
         }
-        echo 'Si bugga qui??';
+
         Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno);
-        echo 'Si bugga qui!!';
+
 
         CommittaTransazione();
     } catch (Exception $e) {
@@ -81,7 +81,7 @@ function UpdataPostiTreno($id_treno)
 
     } catch (Exception $e) {
         RollbackTransazione();
-        echo $e->getMessage() . " Errore 82 CreaBiglietto";
+        echo $e->getMessage() . " Errore  CreaBiglietto";
     }
 
 }

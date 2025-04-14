@@ -29,6 +29,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 <div class="container">
 <?php
+
+function getServerIP() {
+    $ip = @file_get_contents('https://api.ipify.org');
+    return $ip !== false ? trim($ip) : 'localhost';
+}
+
+$ip = getServerIP();
+
 try {
     IniziaTransazione();
 
@@ -53,7 +61,7 @@ try {
 
 
         //hidden per il POST //TODO metti api sito uni
-        echo '<form action="http://localhost:41062/www/progetto2/api/ApiSITOPAGAMENTO.php" method="POST">';
+        echo '<form action="http://'. $ip . '/www/progetto2/api/ApiSITOPAGAMENTO.php" method="POST">';
         echo '<input type="hidden" name="treno_id" value="' . $treno_id . '">';
         echo '<input type="hidden" name="prezzo" value="' . $prezzoBiglietto . '">';
         echo '<input type="hidden" name="esercente" value="' . $esercenteMail . '">';
@@ -62,7 +70,7 @@ try {
 
 
         echo '<h2>Importante - Devi avere un acconnt registrato su PayStream</h2>';
-        echo '<p>Puoi registrarti qui <a href="">TODO</a></p>';
+        echo '<p>Puoi registrarti qui <a href="http://' . $ip . '/www.progetto2/registrazione.php ">TODO</a></p>';
         echo '<label>Inserisci Email <input type="email" name="utenteMail" required> </label>';
         echo '<br>';
         echo '<button type="submit">Acquista biglietto con PayStream</button>';

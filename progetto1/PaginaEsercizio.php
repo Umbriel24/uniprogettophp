@@ -64,20 +64,22 @@ require_once __DIR__ . '/Amministrazione/FunzioniAmministrazione.php';
 </section>
 <br> <br>
 
+<h2>Informazioni sui materiali disponibili</h2>
 <section>
-    <h2>Informazioni sui materiali disponibili</h2>
-    <p> Carrozze libere:</p>
+
+    <h3> Carrozze libere:</h3>
     <?php stampaCarrozzeInattive(getCarrozzeByAttivita('No')); ?>
 </section>
 
 <section>
-    <p>Locomotrici libere</p>
+    <h3>Locomotrici libere</h3>
     <?php stampaLocomotriciInattive(getLocomotriceByAttivita('No')); ?>
 </section>
 
+
 <section>
     <?php StampaConvogli(); ?>
-    <p>Fine lista convogli creati</p>
+    <h3>Fine lista convogli creati</h3>
 </section>
 
 

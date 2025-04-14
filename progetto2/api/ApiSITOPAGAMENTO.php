@@ -75,6 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
 
         $encodedData = json_encode($response);
+
+        //urlInviante corrisponde a PrenotaBiglietto
         $redirectURL = $url_inviante . (strpos($url_inviante, '?') === false ? '?' : '&')
             . 'payment_result=' . urlencode($encodedData);;
 

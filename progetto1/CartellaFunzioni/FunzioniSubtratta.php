@@ -241,7 +241,7 @@ function CheckEsistenzaSubtrattaByIdTreno($id_treno)
 
 function StampaSubtrattePerStampaTreni()
 {
-    $query = "SELECT * FROM progetto1_Subtratta";
+    $query = "SELECT * FROM progetto1_Subtratta LIMIT 30";
     $result = EseguiQuery($query);
 
     if (!$result) {
@@ -264,7 +264,6 @@ function StampaSubtrattePerStampaTreni()
             echo '<td>' . $stazione_partenza . '</td>';
             echo '<td>' . $stazione_arrivo . '</td>';
             echo '</tr>';
-            return true;
         }
     return true;
 }

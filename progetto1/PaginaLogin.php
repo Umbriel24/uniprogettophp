@@ -59,8 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 <div>Login</div>
 <p>Debug: <br>Email: Test@gmail.com <br>Password: Test</p><br>
-<p>Esercizio: <br>Email: amministrazione@gmail.com <br>Password: 1234</p><br>
-<p>Amministrazione: <br>Email: esercizio@gmail.com <br>Password: 1234</p>
+<p>Amministrazione: <br>Email: amministrazione@gmail.com <br>Password: 1234</p><br>
+<p>Esercizio: <br>Email: esercizio@gmail.com <br>Password: 1234</p>
 
 <form method="POST"">
     <div>

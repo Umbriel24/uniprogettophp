@@ -1,11 +1,5 @@
 <?php
-function getServerIP() {
-    $ip = @file_get_contents('https://api.ipify.org');
-    return $ip !== false ? trim($ip) : 'localhost';
-}
 
-$ip = getServerIP();
-echo 'form action="http://' . $ip . '/www/progetto2/api/ApiSITOPAGAMENTO.php" method="POST"';
 ?>
 
 
