@@ -61,11 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Se arriva qui,  treno e subtratte esistono
         EliminaCorsaSubtrattaByIdTreno($id_treno);
 
-
-
-        //Modifichiamo il treno
-        ModificaTreno($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza, $dataArrivo);
-
         $id_convoglio = getConvoglioById_Treno($id_treno);
         $oraPart = $dataOra_partenza;
         $oraArr = $dataArrivo;
@@ -73,6 +68,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(!CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPart, $oraArr)){
             Throw new Exception("Errore,  c'è lo stesso treno che parte in meno di 3 ore.");
         }
+
+        //Modifichiamo il treno
+        ModificaTreno($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza, $dataArrivo);
+
+
+
+
 
         //Creiamo nuove subtratte
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);

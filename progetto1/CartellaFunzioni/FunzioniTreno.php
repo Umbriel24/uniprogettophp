@@ -105,6 +105,10 @@ function CreaTrenoParametrizzato($id_convoglio, $id_s1, $id_s2, $oraPart, $oraAr
         throw new Exception("Errore nei dati. Stazione di partenza e arrivo coincidono");
     }
 
+    if(CheckTrenoPartenzaNelPassato($oraPart)){
+        throw new Exception("Il treno parte in una determinata data nel passato, riprova con una data odierna o futura.");
+    }
+
     $query = "INSERT INTO progetto1_Treno 
           (ora_di_partenza, ora_di_arrivo, nome_stazione_partenza, nome_stazione_arrivo, id_ref_convoglio, posti_disponibili) 
           VALUES (?, ?, ?, ?, ?, ?)";
@@ -139,6 +143,10 @@ function ModificaTreno($id_treno, $id_staz_partenza, $id_staz_arrivo, $dataPart,
     $nomeStazionePartenza = getNomeStazioneFromId($id_staz_partenza);
     $nomeStazioneArrivo = getNomeStazioneFromId($id_staz_arrivo);
 
+    if(CheckTrenoPartenzaNelPassato($dataPart)){
+        throw new Exception("Il treno modificato parte in una determinata data nel passato. Impossibile da creare");
+    }
+
     $query = "UPDATE progetto1_Treno SET nome_stazione_partenza = '$nomeStazionePartenza', 
                            nome_stazione_arrivo = '$nomeStazioneArrivo',
                            ora_di_partenza = '$dataPart',
@@ -153,62 +161,17 @@ function ModificaTreno($id_treno, $id_staz_partenza, $id_staz_arrivo, $dataPart,
 }
 
 
-//function CheckEsistenzaConvoglioTrenoInQuellaGiornata($id_convoglio, $oraPartTrenoRichiesto, $oraArr){
-//
-//    $query = "SELECT DISTINCT c.ora_di_partenza, c.ora_di_arrivo FROM progetto1_Subtratta c
-//    LEFT JOIN progetto1_Treno t on c.id_rif_treno = t.id_treno
-//    where t.id_ref_convoglio = $id_convoglio";
-//
-//    $dataPart = substr($oraPartTrenoRichiesto, 0, 10);
-//    $dataArrivo = substr($oraArr, 0, 10);
-//
-//    $oraPartTrenoRichiesto = substr($oraPartTrenoRichiesto, 10, 3);
-//
-//    $result = EseguiQuery($query);
-//    while ($row = $result->fetchRow()) {
-//
-////        echo $dataPart . " E' il giorno in cui parte";
-////        echo '<br>';
-////        echo $dataArrivo . " E' il giorno in cui arriva";
-////        echo '<br>';
-//
-//        $dataPartIpotetica = substr($row['ora_di_partenza'], 0, 10);
-//        $oraPartenzaIpoteticaStessoTrenoInGiornata = substr($row['ora_di_partenza'], 10, 3);
-//        $dataIpoteticaArrivo = substr($row['ora_di_arrivo'], 0, 10);
-//
-//
-////
-////        echo $dataPartIpotetica . " E' il giorno in cui parte lo stesso treno";
-////        echo '<br>';
-////        echo $dataIpoteticaArrivo . " E' il giorno in cui arriva lo stesso treno";
-////        echo '<br>';
-//
-//
-//
-//        if($dataPart == $dataPartIpotetica || $dataArrivo == $dataIpoteticaArrivo){
-//
-//            echo '<br>';
-//            echo 'Ora di partenza richiesta dell`esercezion per lo stesso treno: ' . $oraPartTrenoRichiesto;
-//            echo '<br>';
-//            echo 'Ora di partenza dello stesso treno in giornata: ' . $oraPartenzaIpoteticaStessoTrenoInGiornata;
-//            echo '<br>';
-//
-//            //Calcolo 3 ore di differenza
-//            if($oraPartTrenoRichiesto > $oraPartenzaIpoteticaStessoTrenoInGiornata + 3 || $oraPartTrenoRichiesto < $oraPartenzaIpoteticaStessoTrenoInGiornata - 3){
-//                echo 'Il treno parte con differenza di 3 ore dall`arrivo precedente, può andare. ';
-//                echo '<br>';
-//                echo $oraPartTrenoRichiesto . ' & ' . $oraPartenzaIpoteticaStessoTrenoInGiornata;
-//                echo '<br>';
-//                Throw new Exception("Impossibile creare un treno. E' già presente un treno in quella giornata.");
-//                return true;
-//            } else {
-//                Throw new Exception("Impossibile creare un treno. E' già presente un treno in quella giornata.");
-//            }
-//            //Facciamo che devono esserci almeno 3 ore di differenza tra le ore di partenza di uno stesso convoglio
-//        }
-//    }
-//    return false;
-//}
+function CheckTrenoPartenzaNelPassato($dataPartenza)
+{
+    $localtime = strtotime(date('Y-m-d H:i:s'));
+    $dateTimeTreno = strtotime($dataPartenza);
+
+
+    if(($dateTimeTreno - $localtime) > 0){
+        return false;
+    } else return true;
+
+}
 
 function CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPartTrenoRichiesto, $oraArrTrenoRichiesto)
 {
@@ -218,10 +181,14 @@ function CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPartTrenoRichiesto, $o
     $dataArrivo = substr($oraArrTrenoRichiesto, 0, 10);
     $oraArrivo = substr($oraArrTrenoRichiesto, 10, 3);
 
+    echo '<br>';
+
     echo ' data partenza: ' . $dataPartenza;
     echo ' data arrivo: ' . $dataArrivo;
     echo ' ora partenza ' . $oraPartenza;
     echo ' ora arrivo ' . $oraArrivo;
+
+    echo '<br>';
 
     try {
 
@@ -231,6 +198,13 @@ function CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPartTrenoRichiesto, $o
         while ($row = $result->fetchRow()) {
             $dataPartenzaStessoConvoglio =  substr($row['ora_di_partenza'], 0, 10);
             $dataArrivoStessoConvoglio = substr($row['ora_di_arrivo'], 0, 10);
+
+            echo '<br>';
+            echo 'La data di partenza è di ' . $dataPartenza;
+            echo '<br>';
+            echo 'La data di partenza dello stesso convoglio è di ' . $dataPartenzaStessoConvoglio;
+            echo '<br>';
+
 
             if($dataPartenza == $dataPartenzaStessoConvoglio || $dataArrivo == $dataArrivoStessoConvoglio){
                 //i treni partono nella stessa giornata.  Bisogna verificare le 3 ore di differenza.
