@@ -63,6 +63,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Throw new Exception("Debug trime");
         //Throw new exception("Debug . non confermiamo il codice");
         CommittaTransazione();
+        echo '<a href="../PaginaEsercizioGestioneCorse.php">Clicca qui per tornare indietro </a>';
+
 
 
     } catch (Exception $e) {
