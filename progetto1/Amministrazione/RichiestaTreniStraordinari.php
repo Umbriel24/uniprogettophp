@@ -21,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             throw new Exception("Errore, la richiesta appena creata fa riferimento ad una data passata. riprova");
         }
 
+        if($id_stazione_partenza < 1 || $id_stazione_partenza > 10 || $id_stazione_arrivo < 1 || $id_stazione_arrivo > 10){
+            throw new Exception("Errore nell'inserimento di una delle due stazioni. riprova");
+        }
+
         if(!VerificaNumeroStazioni($id_stazione_partenza, $id_stazione_arrivo)){
             Throw new Exception("Stazioni non valide. ");
         }
@@ -48,6 +52,7 @@ function Inserimento_progetto1_Amministrazione($posti_richiesti, $data_partenza,
     VALUES($posti_richiesti, '$data_partenza', $id_stazione_partenza, $id_stazione_arrivo)";
 
     $result = EseguiQuery($query);
+
     if(!$result){
         Throw new Exception("Errore nell'INSERT. ");
     }
