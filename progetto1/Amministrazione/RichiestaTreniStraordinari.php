@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Throw new Exception("Stazioni non valide. ");
         }
 
-        if($posti_richiesti < 0){
+        if($posti_richiesti <= 0){
             throw new Exception("Errore, il numero di posti richiesti è errato. riprova");
         }
 
