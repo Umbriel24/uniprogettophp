@@ -17,6 +17,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         IniziaTransazione();
         $data_partenza = RendiDateTimeCompatibile($data_partenza);
 
+        if(CheckTrenoPartenzaNelPassato($data_partenza)){
+            throw new Exception("Errore, la richiesta appena creata fa riferimento ad una data passata. riprova");
+        }
+
         if(!VerificaNumeroStazioni($id_stazione_partenza, $id_stazione_arrivo)){
             Throw new Exception("Stazioni non valide. ");
         }
