@@ -21,6 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Throw new Exception("Stazioni non valide. ");
         }
 
+        if($posti_richiesti < 0){
+            throw new Exception("Errore, il numero di posti richiesti è errato. riprova");
+        }
+
         Inserimento_progetto1_Amministrazione($posti_richiesti, $data_partenza ,$id_stazione_partenza, $id_stazione_arrivo);
         CommittaTransazione();
         echo 'Inserimento avvenuto con successo';
