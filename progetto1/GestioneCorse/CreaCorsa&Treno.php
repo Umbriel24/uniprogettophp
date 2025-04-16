@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);
 
 
+
         //Throw new Exception("Debug trime");
         //Throw new exception("Debug . non confermiamo il codice");
         CommittaTransazione();

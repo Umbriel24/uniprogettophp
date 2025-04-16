@@ -26,11 +26,13 @@ function StampaConvogli()
 //            continue;
 //        }
 
-        $locomotrice = getlocomotriceBy_ref_locomotrice($row['id_ref_locomotiva']);
+        $locomotrice = getLocomotriceBy_ref_locomotrice($row['id_ref_locomotiva']);
         $dataOraTemp = $row['data_ora_creazione'];
+
         $tempListCarrozze = getCarrozzeByIdConvoglioAssociato($id_temp);
 
         $posti_a_sedere_temp = getPostiASedereFromConvoglio($id_temp);
+
         $codici_carrozze = "";
 
         //Fare in modo che convoglio abbia posti a sedere totali che verranno sottratti dai biglietti
@@ -38,6 +40,7 @@ function StampaConvogli()
         while ($row2 = $tempListCarrozze->FetchRow()) {
             //Abbiamo ogni carrozza associata all'id convoglio qui
             $codici_carrozze .= $row2["codice_carrozza"] . ", ";
+
         }
 
         echo '<tr>';
@@ -118,11 +121,14 @@ function CreazioneConvoglio($codice_locomotrice, $posti_a_sedere_complessivi){
     EseguiQuery($query);
 }
 
-function Convoglio_getIdconvoglio_By_refLocomotiva($id_ref_locomotiva){
-    $query = "SELECT * FROM progetto1_Convoglio WHERE id_ref_locomotiva = $id_ref_locomotiva";
-    echo $query;
-    echo "<br>";
-    return EseguiQuery($query);
+function getLastInsertId(){
+    $query = "SELECT LAST_INSERT_ID()";
+    $result = EseguiQuery($query);
+    $row = $result->FetchRow();
+    if($row == null){
+        throw new Exception("Errore, nessun id trovato");
+    }
+    return $row[0];
 }
 
 function getPostiASedereFromConvoglio($id_convoglio)

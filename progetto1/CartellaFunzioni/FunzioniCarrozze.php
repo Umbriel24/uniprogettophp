@@ -8,26 +8,22 @@ require_once __DIR__ . '/FunzioniTreno.php';
 require_once __DIR__ . '/FunzioniConvoglio.php';
 require_once __DIR__ . '/FunzioniLocomotrice.php';
 
-function getCarrozzeByAttivita($attivita)
-{
-    $query = "SELECT * FROM progetto1_Carrozza WHERE in_attivita = '$attivita'";
-    return EseguiQuery($query);
-}
 
 function getCarrozzeByIdConvoglioAssociato($id_convoglio)
 {
-    $query = "SELECT codice_carrozza, posti_a_sedere from progetto1_Carrozza where id_convoglio = $id_convoglio";
+    $query = "SELECT codice_carrozza, posti_a_sedere from progetto1_Carrozza ca
+    JOIN progetto1_ComposizioneCarrozza co on ca.codice_carrozza = co.nome_carrozza 
+    where co.id_ref_convoglio = $id_convoglio";
+
     return EseguiQuery($query);
 }
 
-function stampaCarrozzeInattive($carrozeInattive)
+function stampaCarrozze()
 {
-    if ($carrozeInattive != null && $carrozeInattive->RecordCount() > 0) {
-        echo '<table>';
-        echo '<tr><th>ID</th><th>Numero di serie</th><th>Posti</th></tr>';
-
+    $query = "SELECT * FROM progetto1_Carrozza";
+    $result = EseguiQuery($query);
         //corrisponde al foreach di c#
-        while ($row = $carrozeInattive->FetchRow()) {
+        while ($row = $result->FetchRow()) {
             echo '<tr>';
             echo '<td>' . $row['codice_carrozza'] . '</td>';
             echo '<td>' . $row['numero_di_serie'] . '</td>';
@@ -36,41 +32,20 @@ function stampaCarrozzeInattive($carrozeInattive)
         }
 
         echo '</table>';
-    } else {
-        echo '<div class="alert">Nessuna convoglio inattivo.</div>';
-    }
 }
 
-function CheckCarrozzaAttività($id_carrozza)
+function InserisciRow_ComposizioneCarrozza($codice_carrozza, $id_convoglio)
 {
-    $query = "SELECT * FROM progetto1_Carrozza WHERE codice_carrozza = '$id_carrozza'";
-    $result = EseguiQuery($query);
-    while ($row = $result->FetchRow()) {
-        if ($row['in_attivita'] == 'si') throw new Exception("Errore:  " . $id_carrozza . " Carrozza attiva. Smantella questo convoglio o scegli un'altra carrozza");
-    }
-}
+    echo 'Test: ';
+    echo $codice_carrozza;
+    echo $id_convoglio;
 
-function Updateid_convoglio_Di_Carrozza($codice_carrozza, $id_convoglio)
-{
-    //codice_carrozza = CD2
-    //Id_convoglio = 3
-
-    $query = "UPDATE progetto1_Carrozza 
-            SET id_convoglio = $id_convoglio 
-            WHERE codice_carrozza = '$codice_carrozza'";
-
-    echo $query;
+    $query = "INSERT INTO progetto1_ComposizioneCarrozza(nome_carrozza, id_ref_convoglio) VALUES('$codice_carrozza', $id_convoglio)";
     return EseguiQuery($query);
 
 }
 
-function UpdateAttivitàCarrozza($attivita, $id_carrozza)
-{
-    echo '<br>' . $id_carrozza . ' Problema QUI';
-    if ($attivita != 'si' && $attivita != 'no') die('Attività settata non consentita.');
-    $query = "UPDATE progetto1_Carrozza SET in_attivita = '$attivita' WHERE codice_carrozza = '$id_carrozza'";
-    return EseguiQuery($query);
-}
+
 
 function CalcolaPostiASedereComplessivi(array $codice_carrozza)
 {
@@ -93,4 +68,71 @@ function getPostoASedereDaSingolaCarrozza($codice_carrozza)
     }
 }
 
+
+function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convoglio){
+
+    $carrozzeDelConvoglio = array();
+
+    $query = "SELECT nome_carrozza FROM progetto1_ComposizioneCarrozza WHERE id_ref_convoglio = $id_convoglio";
+    $result = EseguiQuery($query);
+    $i = 0;
+    while ($row = $result->FetchRow()) {
+        $carrozzeDelConvoglio[$i] = $row['nome_carrozza'];
+        $i++;
+    }
+
+    if(count($carrozzeDelConvoglio) == 0){
+        echo '<br>';
+        echo 'Nessuna carrozza associata al convoglio';
+        echo '<br>';
+
+    }
+
+    //Da Treno prendo id_ref_convoglio
+    //Per ogni id ref convoglio prendo nome_carrozza
+    $dataGiornoPartenzaCompleta = new DateTime($oraPartenzaTreno);
+    $dataGiornoArrivoCompleta = new DateTime($oraArrivoSubTreno);
+
+    $giornoPartenza = date('Y-m-d', strtotime($oraPartenzaTreno));
+    $giornoArrivo = date('Y-m-d', strtotime($oraArrivoSubTreno));
+    $oraPartenza = substr($giornoPartenza, 10, 3);
+
+
+    $query1 = "SELECT DISTINCT * FROM progetto1_ComposizioneCarrozza pcc 
+    LEFT JOIN progetto1_Treno t on t.id_ref_convoglio = pcc.id_ref_convoglio
+    WHERE 
+    ora_di_partenza >= '$giornoPartenza 00:00:00.000'
+    AND
+    ora_di_arrivo <= '$giornoArrivo 23:59:59.000'";
+
+    $resul2t = EseguiQuery($query1);
+    while ($row2 = $resul2t->FetchRow()) {
+        $timeStampPartenza1 = $dataGiornoPartenzaCompleta->getTimestamp();
+        $timeStampPartenza2Temp = new DateTime($row2['ora_di_partenza']);
+        $timeStampPartenza2 = $timeStampPartenza2Temp->getTimestamp();
+
+        $timeStampArrivo1 = $dataGiornoArrivoCompleta->getTimestamp();
+        $timeStampArrivo2Temp = new DateTime($row2['ora_di_arrivo']);
+        $timeStampArrivo2 = $timeStampArrivo2Temp->getTimestamp();
+
+        $diffPartenza = abs($timeStampPartenza1 - $timeStampPartenza2)/3600;
+        $diffArrivo = abs($timeStampArrivo1 - $timeStampArrivo2)/3600;
+
+
+        $intervalloDif = $dataGiornoPartenzaCompleta->diff($timeStampPartenza2Temp);
+        echo $intervalloDif->format('%h');
+
+        //vuol dire che sono prossimi in arrivo o partenza. diviso 3600 per rendere la differenza in ore
+        if($diffPartenza < 2 || $diffArrivo < 2){
+           for($j = 0; $j < count($carrozzeDelConvoglio); $j++){
+               if($carrozzeDelConvoglio[$j] == $row2['nome_carrozza']){
+                   throw new Exception("Carrozza già in uso a quell'ora. Riprova con un altro orario");
+               }
+           }
+        }
+
+    }
+
+    return true;
+}
 ?>

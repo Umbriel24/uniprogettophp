@@ -67,13 +67,13 @@ require_once __DIR__ . '/Amministrazione/FunzioniAmministrazione.php';
 <h2>Informazioni sui materiali disponibili</h2>
 <section>
 
-    <h3> Carrozze libere:</h3>
-    <?php stampaCarrozzeInattive(getCarrozzeByAttivita('No')); ?>
+    <h3> Carrozze:</h3>
+    <?php stampaCarrozze(); ?>
 </section>
 
 <section>
-    <h3>Locomotrici libere</h3>
-    <?php stampaLocomotriciInattive(getLocomotriceByAttivita('No')); ?>
+    <h3>Locomotrici</h3>
+    <?php stampaLocomotrici(); ?>
 </section>
 
 

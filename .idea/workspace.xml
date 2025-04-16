@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix posti uguali a 0">
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix richiesta nel passato">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/Amministrazione/RichiestaTreniStraordinari.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/Amministrazione/RichiestaTreniStraordinari.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniConvoglio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/EliminaConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/EliminaConvoglio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +62,6 @@
   &quot;associatedIndex&quot;: 7
 }</component>
   <component name="ProjectId" id="2uy3GBcjjexZ1qzCnFoic1lTSXn" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -100,8 +107,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-PS-243.26053.13" />
-        <option value="bundled-php-predefined-a98d8de5180a-1ec7b7818973-com.jetbrains.php.sharedIndexes-PS-243.26053.13" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PS-251.23774.436" />
+        <option value="bundled-php-predefined-a98d8de5180a-aaeaa8632555-com.jetbrains.php.sharedIndexes-PS-251.23774.436" />
       </set>
     </attachedChunks>
   </component>
@@ -140,31 +147,9 @@
       <workItem from="1744558190501" duration="4199000" />
       <workItem from="1744642109968" duration="7035000" />
       <workItem from="1744658310354" duration="7167000" />
-      <workItem from="1744744737626" duration="2946000" />
-    </task>
-    <task id="LOCAL-00005" summary="Fix  di troppa roba ancora">
-      <option name="closed" value="true" />
-      <created>1743469745880</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1743469745880</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Aggiunta lista di movimenti">
-      <option name="closed" value="true" />
-      <created>1743513356070</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1743513356070</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Homepage diversificata tra esercente e acquirente">
-      <option name="closed" value="true" />
-      <created>1743516194113</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1743516194113</updated>
+      <workItem from="1744744737626" duration="5975000" />
+      <workItem from="1744819535058" duration="3309000" />
+      <workItem from="1744828378141" duration="7313000" />
     </task>
     <task id="LOCAL-00008" summary="Fix">
       <option name="closed" value="true" />
@@ -534,7 +519,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744748362711</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="fix richiesta nel passato">
+      <option name="closed" value="true" />
+      <created>1744748561938</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1744748561938</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fix richiesta nel passato">
+      <option name="closed" value="true" />
+      <created>1744748666656</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1744748666656</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fix richiesta nel passato">
+      <option name="closed" value="true" />
+      <created>1744748984451</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1744748984451</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -552,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Treni creabili" />
     <MESSAGE value="Corsa eliminabile e creabile correttamente" />
     <MESSAGE value="Corsa modificabile. Da aggiungere il percorso dalla stazione n alto al n basso." />
     <MESSAGE value="Corsa modificabile e corsa creabile dalla stazione grande alla minore" />
@@ -577,6 +585,7 @@
     <MESSAGE value="Commit fix vari" />
     <MESSAGE value="fix posti negativi" />
     <MESSAGE value="fix posti uguali a 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix posti uguali a 0" />
+    <MESSAGE value="fix richiesta nel passato" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix richiesta nel passato" />
   </component>
 </project>

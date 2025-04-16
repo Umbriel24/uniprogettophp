@@ -24,33 +24,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
 
-        //Check locomotrice inattiva
-        checkLocomotriceInattivaByCodice($locomotrice);
-
-        //Check carrozze inattive
-        if(!empty($carrozze)){
-            for($i = 0; $i < count($carrozze); $i++){
-                CheckCarrozzaAttività($carrozze[$i]);
-            }
-            //Se arriva qui vuol dire che è stato validato ogni dato
-            echo 'Convoglio valido alla creazione';
-        }
-
-
-
-
         //In ordine
         // Comp.Locomotrice -> in_attività diventa si
         UpdateAttivitaLocomotrice($locomotrice);
         echo 'Attività locomotice updatata nel db';
 
         $posti_a_sedere_complessivi = CalcolaPostiASedereComplessivi($carrozze);
+
         if($locomotrice == 'AN56.2' || $locomotrice == 'AN56.4'){
             $posti_a_sedere_complessivi += 56;
         }
 
         // Aggiungiamo new entry in Convoglio con id_ref_locomotiva precedentemente trovata.
         CreazioneConvoglio($locomotrice, $posti_a_sedere_complessivi);
+        $id_convoglioInserito = getLastInsertId();
 
         echo 'Convoglio creato nel db';
 
@@ -67,14 +54,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 echo $id_ref_locomotiva;
                 echo '<br>';
 
-                $id_temp = Convoglio_getIdconvoglio_By_refLocomotiva($id_ref_locomotiva);
-                $convoglio_row = $id_temp->FetchRow();
-                $convoglio_id = $convoglio_row['id_convoglio'];
                 echo '<br>';
-                Updateid_convoglio_Di_Carrozza($carrozze[$i], $convoglio_id);
-                UpdateAttivitàCarrozza('si', $carrozze[$i]); //QUA
+
+                InserisciRow_ComposizioneCarrozza($carrozze[$i], $id_convoglioInserito);
+
             }
-            echo 'Attività carrozze updatate nel db';
             echo '<br>';
             sleep(1);
         }
