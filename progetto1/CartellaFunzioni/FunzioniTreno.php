@@ -109,12 +109,15 @@ function CreaTrenoParametrizzato($id_convoglio, $id_s1, $id_s2, $oraPart, $oraAr
         throw new Exception("Il treno parte in una determinata data nel passato, riprova con una data odierna o futura.");
     }
 
+
+    if(!Check_LocomotivaGiaInUso($oraPart, $oraArr, $id_convoglio)){
+        throw new Exception("Errore: La locomotiva è già in uso a quell'ora. Riprova con un altro orario");
+    }
+
     if(!Check_CarrozzeGiaInUso($oraPart, $oraArr, $id_convoglio)){
         throw new Exception("Errore: ");
     }
-    if(Check_LocomotivaGiaInUso()){
-        throw new Exception("Errore: La locomotiva è già in uso a quell'ora. Riprova con un altro orario");
-    }
+
 
 
     $query = "INSERT INTO progetto1_Treno 

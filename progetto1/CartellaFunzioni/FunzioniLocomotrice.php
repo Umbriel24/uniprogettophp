@@ -1,4 +1,7 @@
 ﻿<?php
+
+use Cassandra\Date;
+
 require_once __DIR__ . '/../CartellaDB/database.php';
 require_once __DIR__ . '/FunzioniCarrozze.php';
 require_once __DIR__ . '/FunzioniStazione.php';
@@ -21,7 +24,7 @@ function getLocomotriceBy_ref_locomotrice($ref_locomotrice)
         } else return $row['codice_automotrice'];
 
     }
-    Throw new Exception("Locomotrice non trovabile tramite riferimento");
+    throw new Exception("Locomotrice non trovabile tramite riferimento");
 
 }
 
@@ -47,7 +50,6 @@ function getId_locomotrice_By_Codice($codice_locomotrice)
     }
     throw new Exception("Errore, locomotrice non trovata con quel codice");
 }
-
 
 
 function stampaLocomotrici()
@@ -92,11 +94,18 @@ function UpdateAttivitaLocomotrice($codice_locomotrice)
     } else throw new Exception("Errore: Nessuna locomotrice selezionata per l'update. " . $id_da_updatare . " E' l'id da updatare e " . $codice_locomotrice . " ");
 }
 
-function Check_LocomotivaGiaInUso($oraPartenzaTreno, $oraArrivoTreno, $id_convoglio ){
+function Check_LocomotivaGiaInUso($oraPartenzaTreno, $oraArrivoTreno, $id_convoglio)
+{
+    $dataGiornoPartenza = new DateTime($oraPartenzaTreno);
+    $dataGiornoArrivo = new DateTime($oraArrivoTreno);
+
+    $timeStampPartenza1 = $dataGiornoPartenza->getTimestamp();
+    $timeStampArrivo1 = $dataGiornoArrivo->getTimestamp();
+
 
     //Prendiamo la locomotiva che stiamo usando
     $id_ref_locomotiva = getid_ref_LocomotivaByConvoglio($id_convoglio);
-    if($id_ref_locomotiva == null){
+    if ($id_ref_locomotiva == null) {
         throw new Exception("Errore, locomotiva non trovata.");
     }
 
@@ -106,6 +115,24 @@ function Check_LocomotivaGiaInUso($oraPartenzaTreno, $oraArrivoTreno, $id_convog
     LEFT JOIN progetto1_Convoglio c on t.id_ref_convoglio = c.id_convoglio 
     where c.id_ref_locomotiva = $id_ref_locomotiva";
 
+    $result2 = EseguiQuery($query2);
+    while ($row2 = $result2->FetchRow()) {
+        $dataPartenza2 = new DateTime($row2['ora_di_partenza']);
+        $dataArrivo2 = new DateTime($row2['ora_di_arrivo']);
+
+        $timeStampPartenza2 = $dataPartenza2->getTimestamp();
+        $timeStampArrivo2 = $dataArrivo2->getTimestamp();
+
+        $diffPartenza = abs($timeStampPartenza1 - $timeStampPartenza2) / 3600;
+        $diffArrivo = abs($timeStampArrivo1 - $timeStampArrivo2) / 3600;
+
+        if ($diffPartenza < 2 || $diffArrivo < 2) {
+            throw new Exception("Errore, la locomotrice è già in uso in prossimità di 4 ore. riprova con un altro orario");
+        }
+    }
+
+
+    return true;
 
 
 }
@@ -116,7 +143,7 @@ function getid_ref_LocomotivaByConvoglio($id_convoglio)
     $query = "SELECT id_ref_locomotiva FROM progetto1_Convoglio where id_convoglio = $id_convoglio";
     $result = EseguiQuery($query);
 
-    if($result->RecordCount() == 0){
+    if ($result->RecordCount() == 0) {
         throw new Exception("Errore, locomotrice non trovata. " . $id_convoglio . " ");
     }
     $row = $result->FetchRow();
