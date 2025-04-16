@@ -23,6 +23,7 @@ function stampaCarrozze()
     $query = "SELECT * FROM progetto1_Carrozza";
     $result = EseguiQuery($query);
         //corrisponde al foreach di c#
+    echo '<table>';
         while ($row = $result->FetchRow()) {
             echo '<tr>';
             echo '<td>' . $row['codice_carrozza'] . '</td>';
