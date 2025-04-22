@@ -65,8 +65,8 @@ try {
         echo '<input type="hidden" name="treno_id" value="' . $treno_id . '">';
         echo '<input type="hidden" name="prezzo" value="' . $prezzoBiglietto . '">';
         echo '<input type="hidden" name="esercente" value="' . $esercenteMail . '">';
-        echo '<input type="hidden" name="$id_stazione_partenza" value="' . $id_stazione_partenza . '">';
-        echo '<input type="hidden" name="$id_stazione_arrivo" value="' . $id_stazione_arrivo . '">';
+        echo '<input type="hidden" name="id_stazione_partenza" value="' . $id_stazione_partenza . '">';
+        echo '<input type="hidden" name="id_stazione_arrivo" value="' . $id_stazione_arrivo . '">';
 
 
         echo '<input type="hidden" name="url_inviante" value="' . $_SERVER['HTTP_REFERER'] .  '">';
