@@ -37,7 +37,7 @@ function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_p
 
 function Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)
 {
-        echo 'Query inserisce biglietto';
+
         $query = "INSERT INTO progetto1_Biglietto(posto_biglietto, prezzo, id_rif_utente, id_rif_treno, id_stazione_partenza, id_stazione_arrivo) 
         VALUES($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)";
         echo 'query: ' . $query;

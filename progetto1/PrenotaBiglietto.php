@@ -26,8 +26,8 @@ if(isset($_GET['payment_result'])) {
         $id_treno = $DatiSitoPagamento['id_treno'];
 
 
-        $id_stazione_partenza = $DatiSitoPagamento['ora_partenza'];
-        $id_stazione_arrivo = $DatiSitoPagamento['ora_arrivo'];
+        $id_stazione_partenza = $DatiSitoPagamento['id_stazione_partenza'];
+        $id_stazione_arrivo = $DatiSitoPagamento['id_stazione_arrivo'];
 
         echo ' Qui arriva';
         $id_rif_utente = getIdUtenteByEmail($utenteMail);
@@ -40,6 +40,10 @@ if(isset($_GET['payment_result'])) {
             Throw new Exception("Errore. Utente non spedito nel json");
         } else if($id_treno == null){
             Throw new Exception("Errore. Prezzo non spedito nel json");
+        } else if($id_stazione_partenza == null){
+            Throw new Exception("Errore. Stazione partenza non spedito nel json");
+        } else if($id_stazione_arrivo == null){
+            Throw new Exception("Errore. Stazione arrivo non spedito nel json");
         }
 
         echo ' Tenta di creare il biglietto';
