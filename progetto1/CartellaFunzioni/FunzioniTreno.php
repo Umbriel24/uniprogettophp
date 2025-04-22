@@ -82,10 +82,8 @@ function PrendiUltimoIdInserito(){
 }
 function getOraPartenzaTreno($id_treno, $id_stazione_partenza)
 {
-    $nome_stazione_partenza = getNomeStazioneFromId($id_stazione_partenza);
 
-    $query = "SELECT ora_di_partenza FROM progetto1_Treno WHERE id_treno = $id_treno 
-    AND nome_stazione_partenza = '$nome_stazione_partenza'";
+    $query = "SELECT ora_di_partenza FROM progetto1_Treno WHERE id_treno = $id_treno";
     $result = EseguiQuery($query);
     $row = $result->fetchRow();
     return $row["ora_di_partenza"];
