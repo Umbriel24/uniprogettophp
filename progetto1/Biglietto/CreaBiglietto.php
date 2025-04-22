@@ -8,7 +8,7 @@ require_once __DIR__ . '/../CartellaFunzioni/FunzioniConvoglio.php';
 require_once __DIR__ . '/../CartellaFunzioni/FunzioniLocomotrice.php';
 require_once __DIR__ . '/../CartellaFunzioni/FunzioniTratta.php';
 
-function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
+function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)
 {
 
 
@@ -20,7 +20,7 @@ function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
             throw new Exception("Errore. Impossibile creare il biglietto");
         }
 
-        Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno);
+        Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo);
 
 
         CommittaTransazione();

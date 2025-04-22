@@ -43,7 +43,7 @@ if(isset($_GET['payment_result'])) {
         CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo);
         exit();
     } else {
-        echo '<div class="error">Pagamento fallito: '.htmlspecialchars($DatiSitoPagamento['error'] ?? 'Errore sconosciuto').'</div>';
+        echo '<div class="error">Pagamento fallito: '.htmlspecialchars($DatiSitoPagamento['message'] ?? 'Errore sconosciuto').'</div>';
     }
 }
 

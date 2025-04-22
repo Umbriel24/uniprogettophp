@@ -15,7 +15,7 @@ function PrintaBigliettiByIdUtente($id_utente){
     } else {
 
         echo '<table>';
-        echo '<tr><th>Posto</th><th>Treno numero</th></tr>';
+        echo '<tr><th>Posto</th><th>Treno numero</th><th>Stazione partenza</th><th>Stazione arrivo</th><th>Data di partenza</th></tr>';
         while ($row = $result->FetchRow()) {
             echo '<tr>';
             echo '<td>' . $row['posto_biglietto'] . '</td>';
