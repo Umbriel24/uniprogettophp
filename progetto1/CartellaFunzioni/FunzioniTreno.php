@@ -69,6 +69,17 @@ function CalcolaArrivoByTempoPartenzaEKMTotali($OraPartenza, $kmTotali)
     }
 }
 
+function PrendiUltimoIdInserito(){
+    $query = "SELECT id_treno FROM progetto1_Treno ORDER BY id_treno DESC LIMIT 1";
+    $result = EseguiQuery($query);
+
+    $row = $result->fetchRow();
+    if($row == 0 || $row == null){
+        Throw new Exception("Errore nella query: " . $query . " Impossibile prendere l'ultimo id inserito");
+    }
+    return $row["id_treno"];
+
+}
 function getIdTrenoFromConvoglioRef($id_convoglio)
 {
     $query = "SELECT id_treno from progetto1_Treno where id_ref_convoglio = $id_convoglio";

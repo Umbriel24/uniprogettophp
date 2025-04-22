@@ -172,6 +172,12 @@ require_once __DIR__ . '/Amministrazione/FunzioniAmministrazione.php';
     <button type="submit">Conferma eliminazione</button>
 </form>
 
+<h3>ELIMINA TUTTO</h3>
+<form method="POSt" action="GestioneCorse/EliminaTutto.php">
+    <label>Scrivi 789 e premi il bottone<input type="number" name="numero"> </label>
+    <button type="submit">Conferma eliminazione</button>
+</form>
+
 
 
 </body>

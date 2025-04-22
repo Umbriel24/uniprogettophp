@@ -50,9 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //QUERY progetto1_TRENO INSERT
         CreaTrenoParametrizzato($id_convoglio, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza, $dataArrivo);
 
-        $id_treno = getIdTrenoFromConvoglioRef($id_convoglio);
-
-        //Distanza totale + Ora iniziale calcoliamo il tempo di arrivo
+        $id_treno = PrendiUltimoIdInserito();
 
 
         //La logica ora è: Calcoliamo l'orario a cui arriva ad ogni stazione.

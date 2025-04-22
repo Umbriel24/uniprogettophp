@@ -116,6 +116,7 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
                 throw new Exception("Errore nella query rigo 77: " . $querySubtratta . '\n');
             }
 
+            echo 'subtratta inserita con treno id ' . $id_treno;
             //SI SUPPONE IL TRENO STIA FERMO 2 MINUTI IN STAZIONE
 
             $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataOra_arrivoSUBTRATTA . ' +2 minutes'));

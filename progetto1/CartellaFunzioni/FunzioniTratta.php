@@ -7,7 +7,8 @@ require_once __DIR__ . '/FunzioniTreno.php';
 require_once __DIR__ . '/FunzioniConvoglio.php';
 require_once __DIR__ . '/FunzioniLocomotrice.php';
 
-function CalcolaPercorsoInteroByIdTreno($id_treno){
+function CalcolaPercorsoInteroByIdTreno($id_treno)
+{
     $query1 = "SELECT * FROM progetto1_Subtratta WHERE id_rif_treno = $id_treno";
 }
 
@@ -22,34 +23,44 @@ function CheckEsistenzaTratta($id_stazione_partenza, $id_stazione_arrivo, $giorn
     $ora_arrivo = '';
     $kmTotali = 0;
 
-    while ($row = $result->FetchRow()){
+
+
+    while ($row = $result->FetchRow()) {
         //filtriamo il giorno
-        if(substr($row['ora_di_partenza'], 0, 10) != $giorno_partenzaFiltrato){
+        if (substr($row['ora_di_partenza'], 0, 10) != $giorno_partenzaFiltrato) {
             continue;
         }
+
 
 
         //Ora prendiamo ogni singolo treno con una partenza a quella stazione e vediamo se ha una destinazione
         //uguale alla stazione di arrivo
         $trenoTemp = $row['id_rif_treno'];
+        $ora_partenza = $row['ora_di_partenza'];
+
         $query2 = "SELECT * FROM progetto1_Subtratta WHERE id_rif_treno = $trenoTemp && id_stazione_arrivo = $id_stazione_arrivo";
+
+
         $result2 = EseguiQuery($query2);
 
-        if($result2->RecordCount() > 0){
-            //Abbiamo trovato il treno che ha partenza e arrivo tra le subtratte
-            $trenoIndividuato = $trenoTemp;
-            $ora_partenza = $row['ora_di_partenza'];
-            $ora_arrivo = $result2->FetchRow()['ora_di_arrivo'];
+        if ($result2->RecordCount() > 0) {
+            while ($row2 = $result2->FetchRow()) {
+                if ($row2['ora_di_arrivo'] <= $ora_partenza) {
+                    continue;
+                } else {
+                    $trenoIndividuato = $trenoTemp;
+                    $ora_arrivo = $row2['ora_di_arrivo'];
+                }
+            }
+        } else {
+            echo 'Nessun treno con quella partenza e destinazione. Ignorato. <br>';
         }
     }
 
-    if($trenoIndividuato == 0){
+    if ($trenoIndividuato == 0) {
         echo 'Non esiste nessun treno con quelle fermate. Errore funzione tratta 40';
         return 0;
 
-    } else if ($ora_partenza >= $ora_arrivo){
-        echo 'Non esiste nessun treno con questi orari. ';
-        return 0;
 
     } else {
         echo 'Treno trovato: Treno numero ' . $trenoIndividuato . '<br>';

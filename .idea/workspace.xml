@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix richiesta nel passato">
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix carrozza table">
+      <change afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/EliminaTutto.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniConvoglio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTratta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/EliminaConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/EliminaConvoglio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" afterDir="false" />
     </list>
@@ -71,7 +68,7 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;rework&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Vario/PhpDockerFile&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -149,31 +146,10 @@
       <workItem from="1744658310354" duration="7167000" />
       <workItem from="1744744737626" duration="5975000" />
       <workItem from="1744819535058" duration="3309000" />
-      <workItem from="1744828378141" duration="7313000" />
-    </task>
-    <task id="LOCAL-00008" summary="Fix">
-      <option name="closed" value="true" />
-      <created>1743517301463</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1743517301463</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Quasi finito di mettere transazioni">
-      <option name="closed" value="true" />
-      <created>1743520100985</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1743520100985</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Fix">
-      <option name="closed" value="true" />
-      <created>1743536745905</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1743536745905</updated>
+      <workItem from="1744828378141" duration="10065000" />
+      <workItem from="1745186049931" duration="824000" />
+      <workItem from="1745271503425" duration="2516000" />
+      <workItem from="1745322363263" duration="1303000" />
     </task>
     <task id="LOCAL-00011" summary="Prodotto semi finito">
       <option name="closed" value="true" />
@@ -543,7 +519,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744748984451</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="fix richiesta nel passato">
+      <option name="closed" value="true" />
+      <created>1744835884259</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1744835884259</updated>
+    </task>
+    <task id="LOCAL-00058" summary="rework">
+      <option name="closed" value="true" />
+      <created>1744836871120</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1744836871120</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix carrozza table">
+      <option name="closed" value="true" />
+      <created>1744838192031</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1744838192031</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,8 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corsa eliminabile e creabile correttamente" />
-    <MESSAGE value="Corsa modificabile. Da aggiungere il percorso dalla stazione n alto al n basso." />
     <MESSAGE value="Corsa modificabile e corsa creabile dalla stazione grande alla minore" />
     <MESSAGE value="Fix" />
     <MESSAGE value="Amministrazione funzioni implementate" />
@@ -586,6 +584,8 @@
     <MESSAGE value="fix posti negativi" />
     <MESSAGE value="fix posti uguali a 0" />
     <MESSAGE value="fix richiesta nel passato" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix richiesta nel passato" />
+    <MESSAGE value="rework" />
+    <MESSAGE value="fix carrozza table" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix carrozza table" />
   </component>
 </project>
