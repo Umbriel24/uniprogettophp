@@ -26,6 +26,10 @@ if(isset($_GET['payment_result'])) {
         $utenteMail = $DatiSitoPagamento['emailUtente'];
         $id_treno = $DatiSitoPagamento['id_treno'];
 
+
+        $id_stazione_partenza = $DatiSitoPagamento['ora_partenza'];
+        $id_stazione_arrivo = $DatiSitoPagamento['ora_arrivo'];
+
         $id_rif_utente = getIdUtenteByEmail($utenteMail);
 
         if($prezzo == null){
@@ -36,7 +40,7 @@ if(isset($_GET['payment_result'])) {
             Throw new Exception("Errore. Prezzo non spedito nel json");
         }
 
-        CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno);
+        CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo);
         exit();
     } else {
         echo '<div class="error">Pagamento fallito: '.htmlspecialchars($DatiSitoPagamento['error'] ?? 'Errore sconosciuto').'</div>';

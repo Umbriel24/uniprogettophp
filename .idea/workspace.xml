@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix carrozza table">
-      <change afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/EliminaTutto.php" afterDir="false" />
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix treno">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTratta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/Biglietto/BigliettoCodice.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/Biglietto/BigliettoCodice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/Biglietto/CreaBiglietto.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/Biglietto/CreaBiglietto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniBiglietti.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniBiglietti.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/PaginaEsercizio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/PrenotaBiglietto.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/PrenotaBiglietto.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto2/api/ApiSITOPAGAMENTO.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto2/api/ApiSITOPAGAMENTO.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,23 +149,7 @@
       <workItem from="1744828378141" duration="10065000" />
       <workItem from="1745186049931" duration="824000" />
       <workItem from="1745271503425" duration="2516000" />
-      <workItem from="1745322363263" duration="1303000" />
-    </task>
-    <task id="LOCAL-00011" summary="Prodotto semi finito">
-      <option name="closed" value="true" />
-      <created>1743539570796</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1743539570796</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Login e registrazione sito1 fatto">
-      <option name="closed" value="true" />
-      <created>1743625104545</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1743625104545</updated>
+      <workItem from="1745322363263" duration="4282000" />
     </task>
     <task id="LOCAL-00013" summary="Robe - Da aggiungere il check dei treni per l'inserimento in orario">
       <option name="closed" value="true" />
@@ -543,7 +527,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744838192031</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="fix &#10;-id treno,&#10;-corsa non trovata&#10;&#10;aggiunto:&#10;-tasto elimina tutto">
+      <option name="closed" value="true" />
+      <created>1745323739637</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1745323739637</updated>
+    </task>
+    <task id="LOCAL-00061" summary="fix treno">
+      <option name="closed" value="true" />
+      <created>1745325391710</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1745325391710</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -561,8 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Corsa modificabile e corsa creabile dalla stazione grande alla minore" />
-    <MESSAGE value="Fix" />
     <MESSAGE value="Amministrazione funzioni implementate" />
     <MESSAGE value="Amministrazione funzioni implementate e mostrate in Esercizio" />
     <MESSAGE value="Manca il collegamento API" />
@@ -586,6 +584,8 @@
     <MESSAGE value="fix richiesta nel passato" />
     <MESSAGE value="rework" />
     <MESSAGE value="fix carrozza table" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix carrozza table" />
+    <MESSAGE value="fix &#10;-id treno,&#10;-corsa non trovata&#10;&#10;aggiunto:&#10;-tasto elimina tutto" />
+    <MESSAGE value="fix treno" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix treno" />
   </component>
 </project>

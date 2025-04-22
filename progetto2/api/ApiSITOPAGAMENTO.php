@@ -24,6 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = $data['password'] ?? null;
         $esercenteEmail = $data['esercente'] ?? null;
         $url_inviante = $data['url_inviante'] ?? null;
+        $id_stazione_partenza = $data['id_stazione_partenza'] ?? null;
+        $id_stazione_arrivo = $data['id_stazione_arrivo'] ?? null;
+
 
         if ($treno_id == null) {
             throw new Exception("Errore. Treno Id non è arrivato nel json pagamento non spedito nel json");
@@ -38,6 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             throw new Exception("Errore. URL non è arrivato  spedito nel json");
         } else if ($password == null) {
             throw new Exception("Errore, non è arrivata la password nel json");
+        } else if ($id_stazione_partenza == null) {
+            throw new Exception("Errore, non è arrivata la stazione di partenza nel json");
+        } else if ($id_stazione_arrivo == null) {
+            throw new Exception("Errore, non è arrivata la stazione di arrivo nel json");
+
         }
 
         if(!CheckEsistenzaEmailPassword($utenteEmail, $password)){
@@ -78,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             'prezzo' => $prezzoBiglietto,
             'emailUtente' => $utenteEmail,
             'id_treno' => $treno_id,
+            'id_stazione_partenza' => $id_stazione_partenza,
+            'id_stazione_arrivo' => $id_stazione_arrivo,
         ]);
 
         $encodedData = json_encode($response);

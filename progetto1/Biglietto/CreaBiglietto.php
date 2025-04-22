@@ -32,13 +32,13 @@ function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
 
 }
 
-function Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno)
+function Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)
 {
 
     try {
         IniziaTransazione();
-        $query = "INSERT INTO progetto1_Biglietto(posto_biglietto, prezzo, id_rif_utente, id_rif_treno) 
-        VALUES($posto_biglietto, $prezzo, $id_rif_utente, $id_treno)";
+        $query = "INSERT INTO progetto1_Biglietto(posto_biglietto, prezzo, id_rif_utente, id_rif_treno, id_stazione_partenza, id_stazione_arrivo) 
+        VALUES($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)";
 
         EseguiQuery($query);
         CommittaTransazione();

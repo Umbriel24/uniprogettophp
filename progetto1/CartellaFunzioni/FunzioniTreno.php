@@ -80,14 +80,16 @@ function PrendiUltimoIdInserito(){
     return $row["id_treno"];
 
 }
-function getIdTrenoFromConvoglioRef($id_convoglio)
+function getOraPartenzaTreno($id_treno, $id_stazione_partenza)
 {
-    $query = "SELECT id_treno from progetto1_Treno where id_ref_convoglio = $id_convoglio";
+    $nome_stazione_partenza = getNomeStazioneFromId($id_stazione_partenza);
+
+    $query = "SELECT ora_di_partenza FROM progetto1_Treno WHERE id_treno = $id_treno 
+    AND nome_stazione_partenza = '$nome_stazione_partenza'";
     $result = EseguiQuery($query);
-    $resultArray = $result->FetchRow();
-    if (!$resultArray) {
-        throw new Exception("Errore nella query: Treno non trovato tramite id_convoglio");
-    } else return $resultArray["id_treno"];
+    $row = $result->fetchRow();
+    return $row["ora_di_partenza"];
+
 }
 
 function EliminaTreno($id_treno)
