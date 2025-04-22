@@ -32,7 +32,7 @@ if(isset($_GET['payment_result'])) {
         echo ' Qui arriva';
         $id_rif_utente = getIdUtenteByEmail($utenteMail);
 
-        echo ' trova l'utente.;
+        echo ' trova user ' ;
 
         if($prezzo == null){
             Throw new Exception("Errore. Prezzo non spedito nel json");
