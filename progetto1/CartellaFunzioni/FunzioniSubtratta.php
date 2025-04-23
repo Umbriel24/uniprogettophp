@@ -41,25 +41,37 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
             $id_stazione_arrivoSUBTRATTA = $row['id_stazione'] + 1;
 
             $kmTotaliSUBTRATTA = CalcolaKmTotaliSubtratta($id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA);
+
             $dataOra_arrivoSUBTRATTA = CalcolaTempoArrivoSubtratta($dataOra_partenzaSubtratta, $kmTotaliSUBTRATTA);
 
-            //Controllo collisioni
-            Check_CollisioneCorsaTreno($id_stazione_arrivoSUBTRATTA, $id_stazione_partenzaSUBTRATTA, $dataOra_arrivoSUBTRATTA, $dataOra_partenzaSubtratta);
 
+
+            $dataArrivoTrenocollisione = Check_CollisioneCorsaTreno($id_stazione_arrivoSUBTRATTA, $id_stazione_partenzaSUBTRATTA, $dataOra_arrivoSUBTRATTA, $dataOra_partenzaSubtratta);
+
+            if ($dataArrivoTrenocollisione != null) {
+                echo 'Collisione trovata. il treno si stoppa e parte 1 min dopo l`arrivo del treno2 in stazione';
+                // ci sono collisioni. Si posticipa la partenza da questa stazione ad 1 minuto dopo l'arrivo del treno che dovrebbe collidare.
+                //$dataArrivoTrenocollisione = date("y-m-d H:i:s", $dataArrivoTrenocollisione);
+
+                echo $dataArrivoTrenocollisione->format('Y-m-d H:i:s') . ' <br>';;
+                $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataArrivoTrenocollisione->format('Y-m-d H:i:s') . ' +1 minutes'));
+
+                echo 'Ecco la data nuova <br>';
+                echo $dataOra_partenzaSubtratta;
+                //ricalcoliamo l'arrivo
+                $dataOra_arrivoSUBTRATTA = CalcolaTempoArrivoSubtratta($dataOra_partenzaSubtratta, $kmTotaliSUBTRATTA);
+            }
 
             $id_rif_treno = $id_treno;
-
 
 
             $querySubtratta = "INSERT INTO progetto1_Subtratta(
                                 km_totali, ora_di_partenza, ora_di_arrivo, id_rif_treno, 
                                 id_stazione_partenza, id_stazione_arrivo)
             VALUES($kmTotaliSUBTRATTA, '$dataOra_partenzaSubtratta', '$dataOra_arrivoSUBTRATTA', 
-            $id_rif_treno, $id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA)";
- ;
+            $id_rif_treno, $id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA)";;
 
             //L'arrivo diventa orario di andata della prossima subtratta.
-
             $resultQueryInserimento = EseguiQuery($querySubtratta);
 
             if (!$resultQueryInserimento) {
@@ -67,10 +79,7 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
             }
 
             //SI SUPPONE IL TRENO STIA FERMO 2 MINUTI IN STAZIONE
-
             $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataOra_arrivoSUBTRATTA . ' +2 minutes'));
-
-
         }
 
     } else if ($id_staz_partenza > $id_staz_arrivo) {
@@ -96,9 +105,24 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
             $kmTotaliSUBTRATTA = CalcolaKmTotaliSubtratta($id_stazione_partenzaSUBTRATTA, $id_stazione_arrivoSUBTRATTA);
             $dataOra_arrivoSUBTRATTA = CalcolaTempoArrivoSubtratta($dataOra_partenzaSubtratta, $kmTotaliSUBTRATTA);
 
-            Check_CollisioneCorsaTreno($id_stazione_arrivoSUBTRATTA, $id_stazione_partenzaSUBTRATTA, $dataOra_arrivoSUBTRATTA, $dataOra_partenzaSubtratta);
-            $id_rif_treno = $id_treno;
 
+            $dataArrivoTrenocollisione = Check_CollisioneCorsaTreno($id_stazione_arrivoSUBTRATTA, $id_stazione_partenzaSUBTRATTA, $dataOra_arrivoSUBTRATTA, $dataOra_partenzaSubtratta);
+
+            if ($dataArrivoTrenocollisione != null) {
+                echo 'Collisione trovata. il treno si stoppa e parte 1 min dopo l`arrivo del treno2 in stazione';
+                // ci sono collisioni. Si posticipa la partenza da questa stazione ad 1 minuto dopo l'arrivo del treno che dovrebbe collidare.
+                //$dataArrivoTrenocollisione = date("y-m-d H:i:s", $dataArrivoTrenocollisione);
+
+                echo $dataArrivoTrenocollisione->format('Y-m-d H:i:s') . ' <br>';;
+                $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataArrivoTrenocollisione->format('Y-m-d H:i:s') . ' +1 minutes'));
+
+                echo 'Ecco la data nuova <br>';
+                echo $dataOra_partenzaSubtratta;
+                //ricalcoliamo l'arrivo
+                $dataOra_arrivoSUBTRATTA = CalcolaTempoArrivoSubtratta($dataOra_partenzaSubtratta, $kmTotaliSUBTRATTA);
+            }
+
+            $id_rif_treno = $id_treno;
 
 
             $querySubtratta = "INSERT INTO progetto1_Subtratta(
@@ -116,7 +140,6 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
                 throw new Exception("Errore nella query rigo 77: " . $querySubtratta . '\n');
             }
 
-            echo 'subtratta inserita con treno id ' . $id_treno;
             //SI SUPPONE IL TRENO STIA FERMO 2 MINUTI IN STAZIONE
 
             $dataOra_partenzaSubtratta = date("y-m-d H:i:s", strtotime($dataOra_arrivoSUBTRATTA . ' +2 minutes'));
@@ -125,29 +148,36 @@ function CalcolaPercorsoSubTratte($id_treno, $id_staz_partenza, $id_staz_arrivo,
     }
 }
 
-function Check_CollisioneCorsaTreno($id_stazione_arrivo, $id_stazione_partenza, $ora_arrivo, $ora_partenza){
+function Check_CollisioneCorsaTreno($id_stazione_arrivo, $id_stazione_partenza, $ora_arrivo, $ora_partenza)
+{
     $query = "SELECT * from progetto1_Subtratta";
     $result = EseguiQuery($query);
 
 
     while ($row = $result->fetchRow()) {
-        $temp_Staz_arrivo = $row['id_stazione_arrivo'];
-        $temp_Staz_partenza = $row['id_stazione_partenza'];
-        $temp_orario_partenza = $row['ora_di_partenza'];
-        $temp_orario_arrivo = $row['ora_di_arrivo'];
+        $temp_Staz_arrivo = $row['id_stazione_arrivo'] ?? null;
+        $temp_Staz_partenza = $row['id_stazione_partenza'] ?? null;
+        $temp_orario_partenza = $row['ora_di_partenza'] ?? null;
+        $temp_orario_arrivo = $row['ora_di_arrivo'] ?? null;
+
+        if($temp_Staz_arrivo == null || $temp_Staz_partenza == null || $temp_orario_partenza == null || $temp_orario_arrivo == null)
+        {
+            throw new Exception("Errore nella query rigo 105 Funzioni subtratta: " . $query . '\n');
+        }
+
 
 
         //I casi sono due 2:
 
 
         //1. treni partono per lo stesso momento per la stessa tratta/subtratta
-        if($temp_orario_partenza == $ora_partenza && $temp_Staz_partenza == $id_stazione_partenza && $temp_Staz_arrivo == $id_stazione_arrivo){
-            Throw new Exception("Impossibile creare un treno conqueste condizioni: 
+        if ($temp_orario_partenza == $ora_partenza && $temp_Staz_partenza == $id_stazione_partenza && $temp_Staz_arrivo == $id_stazione_arrivo) {
+            throw new Exception("Impossibile creare un treno conqueste condizioni: 
             due treni partono nello stesso orario nella stessa direzione");
         }
 
         //2. Due treni in direzione opposta si incontrano
-        if($temp_Staz_arrivo == $id_stazione_partenza && $temp_Staz_partenza == $id_stazione_arrivo){
+        if ($temp_Staz_arrivo == $id_stazione_partenza && $temp_Staz_partenza == $id_stazione_arrivo) {
             //Dobbiamo calcolare il tempo
             //Vediamo prima se sono nella stessa giornata
             $dataTreno1Andata = new Datetime($ora_partenza);
@@ -161,27 +191,28 @@ function Check_CollisioneCorsaTreno($id_stazione_arrivo, $id_stazione_partenza, 
             $giornata_ArrivoTreno2 = $dataTreno2Arrivo->format('Y-m-d');
 
 
-
-
-            if($giornata_AndataTreno1 == $giornata_AndataTreno2 && $giornata_ArrivoTreno1 == $giornata_ArrivoTreno2){
+            if ($giornata_AndataTreno1 == $giornata_AndataTreno2 && $giornata_ArrivoTreno1 == $giornata_ArrivoTreno2) {
                 //Stanno nella stessa giornata, si verificano ora gli orari
                 $orario_AndataTreno1 = $dataTreno1Andata->format('H:i:s');
                 $orario_AndataTreno2 = $dataTreno2Andata->format('H:i:s');
                 $orario_ArrivoTreno1 = $dataTreno1Arrivo->format('H:i:s');
                 $orario_ArrivoTreno2 = $dataTreno2Arrivo->format('H:i:s');
 
-                if(($orario_AndataTreno1 <= $orario_ArrivoTreno2) && ($orario_AndataTreno2 <= $orario_ArrivoTreno1)){
-                    Throw new Exception("Impossibile creare un treno conqueste condizioni: I due treni effettuano una collisione");
+                if (($orario_AndataTreno1 <= $orario_ArrivoTreno2) && ($orario_AndataTreno2 <= $orario_ArrivoTreno1)) {
+                    echo 'funzionesubtratta arriva alla collisione <br>';
+
+                    echo $dataTreno2Arrivo->format('Y-m-d H:i:s') . ' <br>';;
+                    //ritorniamo l'orario in cui treno2 arriva alla stazione;
+                    return $dataTreno2Arrivo;
                 }
             }
-
-
         }
     }
 
     return null;
 
 }
+
 function CalcolaKmTotaliSubtratta($id_staz_part, $id_stazione_arr)
 {
 
@@ -269,7 +300,6 @@ function StampaSubtrattePerStampaTreni()
         }
     return true;
 }
-
 
 
 ?>

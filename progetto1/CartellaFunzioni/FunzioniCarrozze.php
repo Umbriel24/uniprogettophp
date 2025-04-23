@@ -22,17 +22,17 @@ function stampaCarrozze()
 {
     $query = "SELECT * FROM progetto1_Carrozza";
     $result = EseguiQuery($query);
-        //corrisponde al foreach di c#
+    //corrisponde al foreach di c#
     echo '<table>';
-        while ($row = $result->FetchRow()) {
-            echo '<tr>';
-            echo '<td>' . $row['codice_carrozza'] . '</td>';
-            echo '<td>' . $row['numero_di_serie'] . '</td>';
-            echo '<td>' . $row['posti_a_sedere'] . '</td>';
-            echo '</tr>';
-        }
+    while ($row = $result->FetchRow()) {
+        echo '<tr>';
+        echo '<td>' . $row['codice_carrozza'] . '</td>';
+        echo '<td>' . $row['numero_di_serie'] . '</td>';
+        echo '<td>' . $row['posti_a_sedere'] . '</td>';
+        echo '</tr>';
+    }
 
-        echo '</table>';
+    echo '</table>';
 }
 
 function InserisciRow_ComposizioneCarrozza($codice_carrozza, $id_convoglio)
@@ -45,7 +45,6 @@ function InserisciRow_ComposizioneCarrozza($codice_carrozza, $id_convoglio)
     return EseguiQuery($query);
 
 }
-
 
 
 function CalcolaPostiASedereComplessivi(array $codice_carrozza)
@@ -70,70 +69,61 @@ function getPostoASedereDaSingolaCarrozza($codice_carrozza)
 }
 
 
-function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convoglio){
-
-    $carrozzeDelConvoglio = array();
+function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convoglio)
+{
+    $carrozzeDelConvoglio = [];
 
     $query = "SELECT nome_carrozza FROM progetto1_ComposizioneCarrozza WHERE id_ref_convoglio = $id_convoglio";
     $result = EseguiQuery($query);
-    $i = 0;
     while ($row = $result->FetchRow()) {
-        $carrozzeDelConvoglio[$i] = $row['nome_carrozza'];
-        $i++;
+        $carrozzeDelConvoglio[] = $row['nome_carrozza'];
     }
 
-    if(count($carrozzeDelConvoglio) == 0){
-        echo '<br>';
-        echo 'Nessuna carrozza associata al convoglio';
-        echo '<br>';
-
+    if (empty($carrozzeDelConvoglio)) {
+        echo '<br>Nessuna carrozza associata al convoglio<br>';
+        return true;
     }
 
-    //Da Treno prendo id_ref_convoglio
-    //Per ogni id ref convoglio prendo nome_carrozza
-    $dataGiornoPartenzaCompleta = new DateTime($oraPartenzaTreno);
-    $dataGiornoArrivoCompleta = new DateTime($oraArrivoSubTreno);
+    $partenza1 = new DateTime($oraPartenzaTreno);
+    $arrivo1 = new DateTime($oraArrivoSubTreno);
 
-    $giornoPartenza = date('Y-m-d', strtotime($oraPartenzaTreno));
-    $giornoArrivo = date('Y-m-d', strtotime($oraArrivoSubTreno));
-    $oraPartenza = substr($giornoPartenza, 10, 3);
+    // Margine di sicurezza di 30 minuti
+    $partenza1_buffer_inizio = (clone $partenza1)->modify('-30 minutes');
+    $arrivo1_buffer_fine = (clone $arrivo1)->modify('+30 minutes');
 
+    $giornoInizio = $partenza1->format('Y-m-d');
+    $giornoFine = $arrivo1->format('Y-m-d');
 
-    $query1 = "SELECT DISTINCT * FROM progetto1_ComposizioneCarrozza pcc 
-    LEFT JOIN progetto1_Treno t on t.id_ref_convoglio = pcc.id_ref_convoglio
-    WHERE 
-    ora_di_partenza >= '$giornoPartenza 00:00:00.000'
-    AND
-    ora_di_arrivo <= '$giornoArrivo 23:59:59.000'";
+    $query1 = "SELECT pcc.nome_carrozza, t.ora_di_partenza, t.ora_di_arrivo FROM progetto1_ComposizioneCarrozza pcc 
+               LEFT JOIN progetto1_Treno t ON t.id_ref_convoglio = pcc.id_ref_convoglio
+               WHERE t.ora_di_partenza >= '$giornoInizio 00:00:00'
+                 AND t.ora_di_arrivo <= '$giornoFine 23:59:59'";
 
-    $resul2t = EseguiQuery($query1);
-    while ($row2 = $resul2t->FetchRow()) {
-        $timeStampPartenza1 = $dataGiornoPartenzaCompleta->getTimestamp();
-        $timeStampPartenza2Temp = new DateTime($row2['ora_di_partenza']);
-        $timeStampPartenza2 = $timeStampPartenza2Temp->getTimestamp();
+    $result2 = EseguiQuery($query1);
+    while ($row2 = $result2->FetchRow()) {
+        $nomeCarrozza = $row2['nome_carrozza'];
 
-        $timeStampArrivo1 = $dataGiornoArrivoCompleta->getTimestamp();
-        $timeStampArrivo2Temp = new DateTime($row2['ora_di_arrivo']);
-        $timeStampArrivo2 = $timeStampArrivo2Temp->getTimestamp();
+        // Se non è una delle carrozze in uso dal convoglio attuale, salta
+        if (!in_array($nomeCarrozza, $carrozzeDelConvoglio)) continue;
 
-        $diffPartenza = abs($timeStampPartenza1 - $timeStampPartenza2)/3600;
-        $diffArrivo = abs($timeStampArrivo1 - $timeStampArrivo2)/3600;
+        $partenza2 = new DateTime($row2['ora_di_partenza']);
+        $arrivo2 = new DateTime($row2['ora_di_arrivo']);
 
-
-        $intervalloDif = $dataGiornoPartenzaCompleta->diff($timeStampPartenza2Temp);
-        echo $intervalloDif->format('%h');
-
-        //vuol dire che sono prossimi in arrivo o partenza. diviso 3600 per rendere la differenza in ore
-        if($diffPartenza < 2 || $diffArrivo < 2){
-           for($j = 0; $j < count($carrozzeDelConvoglio); $j++){
-               if($carrozzeDelConvoglio[$j] == $row2['nome_carrozza']){
-                   throw new Exception("Carrozza già in uso a quell'ora. Riprova con un altro orario");
-               }
-           }
+        // Verifica sovrapposizione con margine di 30 minuti
+        if (VerificaSovrapposizioneOrariaCarrozza($partenza1_buffer_inizio, $arrivo1_buffer_fine, $partenza2, $arrivo2)) {
+            throw new Exception("Carrozza '$nomeCarrozza' già in uso in un intervallo di 30 min. Cambia orario.");
         }
-
     }
-
-    return true;
 }
+
+function VerificaSovrapposizioneOrariaCarrozza($inizio1, $fine1, $inizio2, $fine2)
+{
+    if (!($inizio1 instanceof DateTime)) $inizio1 = new DateTime($inizio1);
+    if (!($fine1 instanceof DateTime)) $fine1 = new DateTime($fine1);
+    if (!($inizio2 instanceof DateTime)) $inizio2 = new DateTime($inizio2);
+    if (!($fine2 instanceof DateTime)) $fine2 = new DateTime($fine2);
+
+    return ($inizio1 <= $fine2) && ($fine1 >= $inizio2);
+}
+
 ?>

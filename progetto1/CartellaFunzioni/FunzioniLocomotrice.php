@@ -96,46 +96,53 @@ function UpdateAttivitaLocomotrice($codice_locomotrice)
 
 function Check_LocomotivaGiaInUso($oraPartenzaTreno, $oraArrivoTreno, $id_convoglio)
 {
-    $dataGiornoPartenza = new DateTime($oraPartenzaTreno);
-    $dataGiornoArrivo = new DateTime($oraArrivoTreno);
+    try {
+        $dataPartenzaRichiesta = new DateTime($oraPartenzaTreno);
+        $dataArrivoRichiesta = new DateTime($oraArrivoTreno);
 
-    $timeStampPartenza1 = $dataGiornoPartenza->getTimestamp();
-    $timeStampArrivo1 = $dataGiornoArrivo->getTimestamp();
+        $timestampPartenzaRichiesta = $dataPartenzaRichiesta->getTimestamp();
+        $timestampArrivoRichiesta = $dataArrivoRichiesta->getTimestamp();
 
-
-    //Prendiamo la locomotiva che stiamo usando
-    $id_ref_locomotiva = getid_ref_LocomotivaByConvoglio($id_convoglio);
-    if ($id_ref_locomotiva == null) {
-        throw new Exception("Errore, locomotiva non trovata.");
-    }
-
-
-    //Prendiamo tutti i treni che usano la stessa locomotiva
-    $query2 = "SELECT t.id_ref_convoglio, t.ora_di_partenza, t.ora_di_arrivo, c.id_ref_locomotiva  FROM progetto1_Treno t
-    LEFT JOIN progetto1_Convoglio c on t.id_ref_convoglio = c.id_convoglio 
-    where c.id_ref_locomotiva = $id_ref_locomotiva";
-
-    $result2 = EseguiQuery($query2);
-    while ($row2 = $result2->FetchRow()) {
-        $dataPartenza2 = new DateTime($row2['ora_di_partenza']);
-        $dataArrivo2 = new DateTime($row2['ora_di_arrivo']);
-
-        $timeStampPartenza2 = $dataPartenza2->getTimestamp();
-        $timeStampArrivo2 = $dataArrivo2->getTimestamp();
-
-        $diffPartenza = abs($timeStampPartenza1 - $timeStampPartenza2) / 3600;
-        $diffArrivo = abs($timeStampArrivo1 - $timeStampArrivo2) / 3600;
-
-        if ($diffPartenza < 2 || $diffArrivo < 2) {
-            throw new Exception("Errore, la locomotrice è già in uso in prossimità di 4 ore. riprova con un altro orario");
+        // Recupera la locomotiva assegnata al convoglio richiesto
+        $id_ref_locomotiva = getid_ref_LocomotivaByConvoglio($id_convoglio);
+        if ($id_ref_locomotiva === null) {
+            throw new Exception("Errore: locomotiva non trovata per il convoglio $id_convoglio.");
         }
+
+        // Cerca tutti i treni che usano la stessa locomotiva
+        $query = "
+            SELECT t.id_ref_convoglio, t.ora_di_partenza, t.ora_di_arrivo 
+            FROM progetto1_Treno t
+            JOIN progetto1_Convoglio c ON t.id_ref_convoglio = c.id_convoglio
+            WHERE c.id_ref_locomotiva = $id_ref_locomotiva
+        ";
+
+        $result = EseguiQuery($query);
+
+        while ($row = $result->FetchRow()) {
+            $partenzaAltroTreno = new DateTime($row['ora_di_partenza']);
+            $arrivoAltroTreno = new DateTime($row['ora_di_arrivo']);
+
+            $timestampPartenzaAltro = $partenzaAltroTreno->getTimestamp();
+            $timestampArrivoAltro = $arrivoAltroTreno->getTimestamp();
+
+            // Calcola le differenze in ore (float)
+            $diffOrePartenza = abs($timestampPartenzaRichiesta - $timestampPartenzaAltro) / 3600;
+            $diffOreArrivo = abs($timestampArrivoRichiesta - $timestampArrivoAltro) / 3600;
+
+            // Conflitto se differenza < 30 minuti (0.5 ore)
+            if ($diffOrePartenza <= 0.5 || $diffOreArrivo <= 0.5) {
+                throw new Exception("Errore: la locomotiva è già in uso entro 30 minuti da un altro treno.");
+            }
+        }
+
+        return true;
+
+    } catch (Exception $e) {
+        die("Errore nella funzione Check_LocomotivaGiaInUso: " . $e->getMessage());
     }
-
-
-    return true;
-
-
 }
+
 
 function getid_ref_LocomotivaByConvoglio($id_convoglio)
 {

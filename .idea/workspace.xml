@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="primo commit miglioramenti biglietto">
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="Sesto commit&#10;Fix definitivo credo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/Biglietto/CreaBiglietto.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/Biglietto/CreaBiglietto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniBiglietti.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniBiglietti.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/PrenotaBiglietto.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/PrenotaBiglietto.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto2/api/ApiSITOPAGAMENTO.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto2/api/ApiSITOPAGAMENTO.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,55 +149,10 @@
       <workItem from="1744828378141" duration="10065000" />
       <workItem from="1745186049931" duration="824000" />
       <workItem from="1745271503425" duration="2516000" />
-      <workItem from="1745322363263" duration="5148000" />
-    </task>
-    <task id="LOCAL-00014" summary="Stampa di convogli liberi e locomotive libere">
-      <option name="closed" value="true" />
-      <created>1743688449870</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1743688449870</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Stampa di carrozze, convogli e locomotrici libere">
-      <option name="closed" value="true" />
-      <created>1743691441463</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1743691441463</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Fix">
-      <option name="closed" value="true" />
-      <created>1743694450150</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1743694450150</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Non ci sto a capi niente">
-      <option name="closed" value="true" />
-      <created>1743696870640</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1743696870640</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Quasi completo il create - manca il riferimento al table convoglio in ref_convoglio in carrozza">
-      <option name="closed" value="true" />
-      <created>1743711996955</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1743711996955</updated>
-    </task>
-    <task id="LOCAL-00019" summary="polkodioooooooooo">
-      <option name="closed" value="true" />
-      <created>1743715368265</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1743715368265</updated>
+      <workItem from="1745322363263" duration="6580000" />
+      <workItem from="1745360478074" duration="641000" />
+      <workItem from="1745428331919" duration="2807000" />
+      <workItem from="1745434214803" duration="5405000" />
     </task>
     <task id="LOCAL-00020" summary="Pre-Transazione">
       <option name="closed" value="true" />
@@ -541,7 +498,55 @@
       <option name="project" value="LOCAL" />
       <updated>1745326921768</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="secondo commit miglioramenti biglietto&#10;-print errore">
+      <option name="closed" value="true" />
+      <created>1745327594834</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1745327594834</updated>
+    </task>
+    <task id="LOCAL-00064" summary="terzo commit&#10;-fix avevo messo $variabile in ''">
+      <option name="closed" value="true" />
+      <created>1745327707909</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1745327707909</updated>
+    </task>
+    <task id="LOCAL-00065" summary="quarto commit&#10;-tentiamo di individuare l'errore">
+      <option name="closed" value="true" />
+      <created>1745328257404</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1745328257404</updated>
+    </task>
+    <task id="LOCAL-00066" summary="quarto commit&#10;-tentiamo di individuare l'errore">
+      <option name="closed" value="true" />
+      <created>1745328362719</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1745328362719</updated>
+    </task>
+    <task id="LOCAL-00067" summary="quarto commit&#10;-tentiamo di individuare l'errore">
+      <option name="closed" value="true" />
+      <created>1745328531851</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1745328531851</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Sesto commit&#10;Fix definitivo credo">
+      <option name="closed" value="true" />
+      <created>1745328796152</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1745328796152</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -559,10 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Amministrazione funzioni implementate e mostrate in Esercizio" />
-    <MESSAGE value="Manca il collegamento API" />
-    <MESSAGE value="Non so che cazzo sto" />
-    <MESSAGE value="POGGEROLA" />
     <MESSAGE value="Biscotti" />
     <MESSAGE value="Santo iddio" />
     <MESSAGE value="Commit finale &#10;Inserimento nel sito" />
@@ -584,6 +585,10 @@
     <MESSAGE value="fix &#10;-id treno,&#10;-corsa non trovata&#10;&#10;aggiunto:&#10;-tasto elimina tutto" />
     <MESSAGE value="fix treno" />
     <MESSAGE value="primo commit miglioramenti biglietto" />
-    <option name="LAST_COMMIT_MESSAGE" value="primo commit miglioramenti biglietto" />
+    <MESSAGE value="secondo commit miglioramenti biglietto&#10;-print errore" />
+    <MESSAGE value="terzo commit&#10;-fix avevo messo $variabile in ''" />
+    <MESSAGE value="quarto commit&#10;-tentiamo di individuare l'errore" />
+    <MESSAGE value="Sesto commit&#10;Fix definitivo credo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sesto commit&#10;Fix definitivo credo" />
   </component>
 </project>

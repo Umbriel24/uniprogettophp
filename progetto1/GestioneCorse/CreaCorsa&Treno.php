@@ -56,11 +56,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //La logica ora è: Calcoliamo l'orario a cui arriva ad ogni stazione.
         // Aspetta li 2 minuti e parte per la prossima stazione
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);
+        UpdateArrivoTreno($id_treno);
 
+        throw new Exception("Errore debug");
 
-
-        //Throw new Exception("Debug trime");
-        //Throw new exception("Debug . non confermiamo il codice");
         CommittaTransazione();
         echo '<a href="../PaginaEsercizioGestioneCorse.php">Clicca qui per tornare indietro </a>';
 
