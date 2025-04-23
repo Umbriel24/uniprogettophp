@@ -58,8 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);
         UpdateArrivoTreno($id_treno);
 
-        throw new Exception("Errore debug");
-
         CommittaTransazione();
         echo '<a href="../PaginaEsercizioGestioneCorse.php">Clicca qui per tornare indietro </a>';
 
