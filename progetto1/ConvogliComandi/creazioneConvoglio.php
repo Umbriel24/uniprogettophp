@@ -24,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
         }
 
+
         //In ordine
         // Comp.Locomotrice -> in_attività diventa si
         UpdateAttivitaLocomotrice($locomotrice);
@@ -64,6 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
         CommittaTransazione();
         echo 'Creazione convoglio con update nei table correttamente effettuate';
+        echo 'Torna indietro <a href="../PaginaEsercizioGestioneCorse.php">qui</a>';
 
 
     } catch (Exception $e){

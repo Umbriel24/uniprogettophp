@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="Sesto commit&#10;Fix definitivo credo">
+    <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix forse">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniLocomotrice.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/CreaCorsa&amp;Treno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -152,23 +150,8 @@
       <workItem from="1745322363263" duration="6580000" />
       <workItem from="1745360478074" duration="641000" />
       <workItem from="1745428331919" duration="2807000" />
-      <workItem from="1745434214803" duration="5405000" />
-    </task>
-    <task id="LOCAL-00020" summary="Pre-Transazione">
-      <option name="closed" value="true" />
-      <created>1743782444789</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1743782444789</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Creazione convoglio e eliminazione convoglio perfettamente funzionante">
-      <option name="closed" value="true" />
-      <created>1743787511238</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1743787511238</updated>
+      <workItem from="1745434214803" duration="6062000" />
+      <workItem from="1745452513070" duration="892000" />
     </task>
     <task id="LOCAL-00022" summary="Treno creabile">
       <option name="closed" value="true" />
@@ -546,7 +529,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745328796152</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Fix. &#10;-i treni si fermano per lasciar passare in collisione&#10;&#10;-tempo cambiato a 30min in caso di collisione">
+      <option name="closed" value="true" />
+      <created>1745439702929</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1745439702930</updated>
+    </task>
+    <task id="LOCAL-00070" summary="fix forse">
+      <option name="closed" value="true" />
+      <created>1745452551751</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1745452551752</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,8 +563,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Biscotti" />
-    <MESSAGE value="Santo iddio" />
     <MESSAGE value="Commit finale &#10;Inserimento nel sito" />
     <MESSAGE value="Docker" />
     <MESSAGE value="fix vari" />
@@ -589,6 +586,8 @@
     <MESSAGE value="terzo commit&#10;-fix avevo messo $variabile in ''" />
     <MESSAGE value="quarto commit&#10;-tentiamo di individuare l'errore" />
     <MESSAGE value="Sesto commit&#10;Fix definitivo credo" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sesto commit&#10;Fix definitivo credo" />
+    <MESSAGE value="Fix. &#10;-i treni si fermano per lasciar passare in collisione&#10;&#10;-tempo cambiato a 30min in caso di collisione" />
+    <MESSAGE value="fix forse" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix forse" />
   </component>
 </project>

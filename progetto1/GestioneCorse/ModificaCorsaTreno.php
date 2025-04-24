@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Se il treno ha già biglietti non si può modificare
         CheckEsistenzaBigliettiPerIlTreno($id_treno);
 
+
+
         //Se arriva qui,  treno e subtratte esistono
         EliminaCorsaSubtrattaByIdTreno($id_treno);
 

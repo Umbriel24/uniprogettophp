@@ -79,6 +79,7 @@ function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convo
         $carrozzeDelConvoglio[] = $row['nome_carrozza'];
     }
 
+
     if (empty($carrozzeDelConvoglio)) {
         echo '<br>Nessuna carrozza associata al convoglio<br>';
         return true;
@@ -94,30 +95,40 @@ function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convo
     $giornoInizio = $partenza1->format('Y-m-d');
     $giornoFine = $arrivo1->format('Y-m-d');
 
+
+    echo '<br>';
     $query1 = "SELECT pcc.nome_carrozza, t.ora_di_partenza, t.ora_di_arrivo FROM progetto1_ComposizioneCarrozza pcc 
                LEFT JOIN progetto1_Treno t ON t.id_ref_convoglio = pcc.id_ref_convoglio
                WHERE t.ora_di_partenza >= '$giornoInizio 00:00:00'
                  AND t.ora_di_arrivo <= '$giornoFine 23:59:59'";
 
+    echo $query1;
+
+
     $result2 = EseguiQuery($query1);
-    while ($row2 = $result2->FetchRow()) {
-        $nomeCarrozza = $row2['nome_carrozza'];
 
-        // Se non è una delle carrozze in uso dal convoglio attuale, salta
-        if (!in_array($nomeCarrozza, $carrozzeDelConvoglio)) continue;
+    if ($result2->RecordCount() > 0) {
+        while ($row2 = $result2->FetchRow()) {
+            $nomeCarrozza = $row2['nome_carrozza'];
 
-        $partenza2 = new DateTime($row2['ora_di_partenza']);
-        $arrivo2 = new DateTime($row2['ora_di_arrivo']);
+            // Se non è una delle carrozze in uso dal convoglio attuale, salta
+            if (!in_array($nomeCarrozza, $carrozzeDelConvoglio)) continue;
 
-        // Verifica sovrapposizione con margine di 30 minuti
-        if (VerificaSovrapposizioneOrariaCarrozza($partenza1_buffer_inizio, $arrivo1_buffer_fine, $partenza2, $arrivo2)) {
-            throw new Exception("Carrozza '$nomeCarrozza' già in uso in un intervallo di 30 min. Cambia orario.");
+            $partenza2 = new DateTime($row2['ora_di_partenza']);
+            $arrivo2 = new DateTime($row2['ora_di_arrivo']);
+
+            // Verifica sovrapposizione con margine di 30 minuti
+            if (VerificaSovrapposizioneOrariaCarrozza($partenza1_buffer_inizio, $arrivo1_buffer_fine, $partenza2, $arrivo2)) {
+                throw new Exception("Carrozza '$nomeCarrozza' già in uso in un intervallo di 30 min. Cambia orario.");
+            }
         }
     }
+    return true;
 }
 
 function VerificaSovrapposizioneOrariaCarrozza($inizio1, $fine1, $inizio2, $fine2)
 {
+
     if (!($inizio1 instanceof DateTime)) $inizio1 = new DateTime($inizio1);
     if (!($fine1 instanceof DateTime)) $fine1 = new DateTime($fine1);
     if (!($inizio2 instanceof DateTime)) $inizio2 = new DateTime($inizio2);

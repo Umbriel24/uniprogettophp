@@ -124,10 +124,10 @@ function CreaTrenoParametrizzato($id_convoglio, $id_s1, $id_s2, $oraPart, $oraAr
     if(!Check_LocomotivaGiaInUso($oraPart, $oraArr, $id_convoglio)){
         throw new Exception("Errore: La locomotiva è già in uso a quell'ora. Riprova con un altro orario");
     }
-
     if(!Check_CarrozzeGiaInUso($oraPart, $oraArr, $id_convoglio)){
-        throw new Exception("Errore: ");
+        throw new Exception("Errore: carrozza già in uso ");
     }
+
 
 
 
@@ -259,7 +259,7 @@ function CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPartTrenoRichiesto, $o
         return true;
 
     } catch (Exception $e) {
-        die("Errore: " . $e->getMessage());
+        die("Errore rigo 262 funzioniTreno: " . $e->getMessage());
     }
 }
 
