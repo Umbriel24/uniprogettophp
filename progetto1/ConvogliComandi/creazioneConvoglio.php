@@ -40,6 +40,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         CreazioneConvoglio($locomotrice, $posti_a_sedere_complessivi);
         $id_convoglioInserito = getLastInsertId();
 
+
+
         echo 'Convoglio creato nel db';
 
         $id_locomotrice = getId_locomotrice_By_Codice($locomotrice);
@@ -63,9 +65,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             echo '<br>';
             sleep(1);
         }
+
+        if(!CheckCombinazioneGiaEsistente($id_convoglioInserito)){
+            throw new Exception("Errore: Un convoglio identico già esiste");
+        }
+
         CommittaTransazione();
         echo 'Creazione convoglio con update nei table correttamente effettuate';
-        echo 'Torna indietro <a href="../PaginaEsercizioGestioneCorse.php">qui</a>';
+        echo 'Torna indietro <a href="../PaginaEsercizio.php">qui</a>';
 
 
     } catch (Exception $e){
