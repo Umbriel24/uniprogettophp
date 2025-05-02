@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6692e327-b173-44f2-bd27-85148dd5c2d3" name="Changes" comment="fix forse">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniCarrozze.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniTreno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/ConvogliComandi/creazioneConvoglio.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/GestioneCorse/ModificaCorsaTreno.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" beforeDir="false" afterPath="$PROJECT_DIR$/progetto1/CartellaFunzioni/FunzioniSubtratta.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +149,7 @@
       <workItem from="1745428331919" duration="2807000" />
       <workItem from="1745434214803" duration="6062000" />
       <workItem from="1745452513070" duration="892000" />
+      <workItem from="1746179564819" duration="981000" />
     </task>
     <task id="LOCAL-00022" summary="Treno creabile">
       <option name="closed" value="true" />
