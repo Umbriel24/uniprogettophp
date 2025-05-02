@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         //Se il treno ha già biglietti non si può modificare
         CheckEsistenzaBigliettiPerIlTreno($id_treno);
 
+
+
         //Se arriva qui,  treno e subtratte esistono
         EliminaCorsaSubtrattaByIdTreno($id_treno);
 
@@ -80,6 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         CalcolaPercorsoSubTratte($id_treno, $id_stazione_partenza, $id_stazione_arrivo, $dataOra_partenza);
 
 
+        echo '<a href="../PaginaEsercizioGestioneCorse.php">Clicca qui per tornare indietro </a>';
         CommittaTransazione();
 
     } catch (Exception $e) {

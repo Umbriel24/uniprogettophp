@@ -20,13 +20,19 @@ if(isset($_GET['payment_result'])) {
 
     if ($DatiSitoPagamento && $DatiSitoPagamento['success']) {
         echo 'Pagamanto effettuato con successo';
-        echo 'Torna indietro';
 
         $prezzo = $DatiSitoPagamento['prezzo'];
         $utenteMail = $DatiSitoPagamento['emailUtente'];
         $id_treno = $DatiSitoPagamento['id_treno'];
 
+
+        $id_stazione_partenza = $DatiSitoPagamento['id_stazione_partenza'];
+        $id_stazione_arrivo = $DatiSitoPagamento['id_stazione_arrivo'];
+
+        echo ' Qui arriva';
         $id_rif_utente = getIdUtenteByEmail($utenteMail);
+
+        echo ' trova user ' ;
 
         if($prezzo == null){
             Throw new Exception("Errore. Prezzo non spedito nel json");
@@ -34,12 +40,20 @@ if(isset($_GET['payment_result'])) {
             Throw new Exception("Errore. Utente non spedito nel json");
         } else if($id_treno == null){
             Throw new Exception("Errore. Prezzo non spedito nel json");
+        } else if($id_stazione_partenza == null){
+            Throw new Exception("Errore. Stazione partenza non spedito nel json");
+        } else if($id_stazione_arrivo == null){
+            Throw new Exception("Errore. Stazione arrivo non spedito nel json");
         }
 
-        CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno);
+        echo ' Tenta di creare il biglietto';
+
+        CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo);
+        echo 'Torna indietro <a href="PaginaUtente.php">qui</a> per vedere i tuoi biglietti';
+
         exit();
     } else {
-        echo '<div class="error">Pagamento fallito: '.htmlspecialchars($DatiSitoPagamento['error'] ?? 'Errore sconosciuto').'</div>';
+        echo '<div class="error">Pagamento fallito: '.htmlspecialchars($DatiSitoPagamento['message'] ?? 'Errore sconosciuto').'</div>';
     }
 }
 

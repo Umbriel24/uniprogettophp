@@ -8,69 +8,44 @@ require_once __DIR__ . '/FunzioniTreno.php';
 require_once __DIR__ . '/FunzioniConvoglio.php';
 require_once __DIR__ . '/FunzioniLocomotrice.php';
 
-function getCarrozzeByAttivita($attivita)
-{
-    $query = "SELECT * FROM progetto1_Carrozza WHERE in_attivita = '$attivita'";
-    return EseguiQuery($query);
-}
 
 function getCarrozzeByIdConvoglioAssociato($id_convoglio)
 {
-    $query = "SELECT codice_carrozza, posti_a_sedere from progetto1_Carrozza where id_convoglio = $id_convoglio";
+    $query = "SELECT codice_carrozza, posti_a_sedere from progetto1_Carrozza ca
+    JOIN progetto1_ComposizioneCarrozza co on ca.codice_carrozza = co.nome_carrozza 
+    where co.id_ref_convoglio = $id_convoglio";
+
     return EseguiQuery($query);
 }
 
-function stampaCarrozzeInattive($carrozeInattive)
+function stampaCarrozze()
 {
-    if ($carrozeInattive != null && $carrozeInattive->RecordCount() > 0) {
-        echo '<table>';
-        echo '<tr><th>ID</th><th>Numero di serie</th><th>Posti</th></tr>';
-
-        //corrisponde al foreach di c#
-        while ($row = $carrozeInattive->FetchRow()) {
-            echo '<tr>';
-            echo '<td>' . $row['codice_carrozza'] . '</td>';
-            echo '<td>' . $row['numero_di_serie'] . '</td>';
-            echo '<td>' . $row['posti_a_sedere'] . '</td>';
-            echo '</tr>';
-        }
-
-        echo '</table>';
-    } else {
-        echo '<div class="alert">Nessuna convoglio inattivo.</div>';
-    }
-}
-
-function CheckCarrozzaAttività($id_carrozza)
-{
-    $query = "SELECT * FROM progetto1_Carrozza WHERE codice_carrozza = '$id_carrozza'";
+    $query = "SELECT * FROM progetto1_Carrozza";
     $result = EseguiQuery($query);
+    //corrisponde al foreach di c#
+    echo '<table>';
     while ($row = $result->FetchRow()) {
-        if ($row['in_attivita'] == 'si') throw new Exception("Errore:  " . $id_carrozza . " Carrozza attiva. Smantella questo convoglio o scegli un'altra carrozza");
+        echo '<tr>';
+        echo '<td>' . $row['codice_carrozza'] . '</td>';
+        echo '<td>' . $row['numero_di_serie'] . '</td>';
+        echo '<td>' . $row['posti_a_sedere'] . '</td>';
+        echo '</tr>';
     }
+
+    echo '</table>';
 }
 
-function Updateid_convoglio_Di_Carrozza($codice_carrozza, $id_convoglio)
+function InserisciRow_ComposizioneCarrozza($codice_carrozza, $id_convoglio)
 {
-    //codice_carrozza = CD2
-    //Id_convoglio = 3
+    echo 'Test: ';
+    echo $codice_carrozza;
+    echo $id_convoglio;
 
-    $query = "UPDATE progetto1_Carrozza 
-            SET id_convoglio = $id_convoglio 
-            WHERE codice_carrozza = '$codice_carrozza'";
-
-    echo $query;
+    $query = "INSERT INTO progetto1_ComposizioneCarrozza(nome_carrozza, id_ref_convoglio) VALUES('$codice_carrozza', $id_convoglio)";
     return EseguiQuery($query);
 
 }
 
-function UpdateAttivitàCarrozza($attivita, $id_carrozza)
-{
-    echo '<br>' . $id_carrozza . ' Problema QUI';
-    if ($attivita != 'si' && $attivita != 'no') die('Attività settata non consentita.');
-    $query = "UPDATE progetto1_Carrozza SET in_attivita = '$attivita' WHERE codice_carrozza = '$id_carrozza'";
-    return EseguiQuery($query);
-}
 
 function CalcolaPostiASedereComplessivi(array $codice_carrozza)
 {
@@ -91,6 +66,75 @@ function getPostoASedereDaSingolaCarrozza($codice_carrozza)
     if ($row = $result->FetchRow()) {
         return $row['posti_a_sedere'];
     }
+}
+
+
+function Check_CarrozzeGiaInUso($oraPartenzaTreno, $oraArrivoSubTreno, $id_convoglio)
+{
+    $carrozzeDelConvoglio = [];
+
+    $query = "SELECT nome_carrozza FROM progetto1_ComposizioneCarrozza WHERE id_ref_convoglio = $id_convoglio";
+    $result = EseguiQuery($query);
+    while ($row = $result->FetchRow()) {
+        $carrozzeDelConvoglio[] = $row['nome_carrozza'];
+    }
+
+
+    if (empty($carrozzeDelConvoglio)) {
+        echo '<br>Nessuna carrozza associata al convoglio<br>';
+        return true;
+    }
+
+    $partenza1 = new DateTime($oraPartenzaTreno);
+    $arrivo1 = new DateTime($oraArrivoSubTreno);
+
+    // Margine di sicurezza di 30 minuti
+    $partenza1_buffer_inizio = (clone $partenza1)->modify('-30 minutes');
+    $arrivo1_buffer_fine = (clone $arrivo1)->modify('+30 minutes');
+
+    $giornoInizio = $partenza1->format('Y-m-d');
+    $giornoFine = $arrivo1->format('Y-m-d');
+
+
+    echo '<br>';
+    $query1 = "SELECT pcc.nome_carrozza, t.ora_di_partenza, t.ora_di_arrivo FROM progetto1_ComposizioneCarrozza pcc 
+               LEFT JOIN progetto1_Treno t ON t.id_ref_convoglio = pcc.id_ref_convoglio
+               WHERE t.ora_di_partenza >= '$giornoInizio 00:00:00'
+                 AND t.ora_di_arrivo <= '$giornoFine 23:59:59'";
+
+    echo $query1;
+
+
+    $result2 = EseguiQuery($query1);
+
+    if ($result2->RecordCount() > 0) {
+        while ($row2 = $result2->FetchRow()) {
+            $nomeCarrozza = $row2['nome_carrozza'];
+
+            // Se non è una delle carrozze in uso dal convoglio attuale, salta
+            if (!in_array($nomeCarrozza, $carrozzeDelConvoglio)) continue;
+
+            $partenza2 = new DateTime($row2['ora_di_partenza']);
+            $arrivo2 = new DateTime($row2['ora_di_arrivo']);
+
+            // Verifica sovrapposizione con margine di 30 minuti
+            if (VerificaSovrapposizioneOrariaCarrozza($partenza1_buffer_inizio, $arrivo1_buffer_fine, $partenza2, $arrivo2)) {
+                throw new Exception("Carrozza '$nomeCarrozza' già in uso in un intervallo di 30 min. Cambia orario.");
+            }
+        }
+    }
+    return true;
+}
+
+function VerificaSovrapposizioneOrariaCarrozza($inizio1, $fine1, $inizio2, $fine2)
+{
+
+    if (!($inizio1 instanceof DateTime)) $inizio1 = new DateTime($inizio1);
+    if (!($fine1 instanceof DateTime)) $fine1 = new DateTime($fine1);
+    if (!($inizio2 instanceof DateTime)) $inizio2 = new DateTime($inizio2);
+    if (!($fine2 instanceof DateTime)) $fine2 = new DateTime($fine2);
+
+    return ($inizio1 <= $fine2) && ($fine1 >= $inizio2);
 }
 
 ?>

@@ -15,12 +15,15 @@ function PrintaBigliettiByIdUtente($id_utente){
     } else {
 
         echo '<table>';
-        echo '<tr><th>ID</th><th>Posto</th><th>Treno numero</th></tr>';
+        echo '<tr><th>Posto</th><th>Treno numero</th><th>Stazione partenza</th><th>Stazione arrivo</th><th>Data di partenza</th></tr>';
         while ($row = $result->FetchRow()) {
             echo '<tr>';
-            echo '<td>' . $row['id_biglietto'] . '</td>';
             echo '<td>' . $row['posto_biglietto'] . '</td>';
             echo '<td>' . $row['id_rif_treno'] . '</td>';
+            echo '<td>' . $row['id_stazione_partenza'] . '</td>';
+            echo '<td>' . $row['id_stazione_arrivo'] . '</td>';
+            echo '<td>' . getOraPartenzaTreno($row['id_rif_treno'], $row['id_stazione_partenza']) . '</td>';
+
 
         }
         echo '</tr>';

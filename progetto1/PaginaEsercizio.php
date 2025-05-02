@@ -67,13 +67,13 @@ require_once __DIR__ . '/Amministrazione/FunzioniAmministrazione.php';
 <h2>Informazioni sui materiali disponibili</h2>
 <section>
 
-    <h3> Carrozze libere:</h3>
-    <?php stampaCarrozzeInattive(getCarrozzeByAttivita('No')); ?>
+    <h3> Carrozze:</h3>
+    <?php stampaCarrozze(); ?>
 </section>
 
 <section>
-    <h3>Locomotrici libere</h3>
-    <?php stampaLocomotriciInattive(getLocomotriceByAttivita('No')); ?>
+    <h3>Locomotrici</h3>
+    <?php stampaLocomotrici(); ?>
 </section>
 
 
@@ -169,6 +169,12 @@ require_once __DIR__ . '/Amministrazione/FunzioniAmministrazione.php';
 <form method="POST" action="ConvogliComandi/EliminaConvoglio.php">
     <label>Inserisci ID convoglio da eliminare<input type="number" name="id_convoglio"></label>
     <br>
+    <button type="submit">Conferma eliminazione</button>
+</form>
+
+<h3>ELIMINA TUTTO</h3>
+<form method="POSt" action="GestioneCorse/EliminaTutto.php">
+    <label>Scrivi 789 e premi il bottone<input type="number" name="numero"> </label>
     <button type="submit">Conferma eliminazione</button>
 </form>
 

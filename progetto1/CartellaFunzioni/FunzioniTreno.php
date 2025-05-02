@@ -69,14 +69,25 @@ function CalcolaArrivoByTempoPartenzaEKMTotali($OraPartenza, $kmTotali)
     }
 }
 
-function getIdTrenoFromConvoglioRef($id_convoglio)
-{
-    $query = "SELECT id_treno from progetto1_Treno where id_ref_convoglio = $id_convoglio";
+function PrendiUltimoIdInserito(){
+    $query = "SELECT id_treno FROM progetto1_Treno ORDER BY id_treno DESC LIMIT 1";
     $result = EseguiQuery($query);
-    $resultArray = $result->FetchRow();
-    if (!$resultArray) {
-        throw new Exception("Errore nella query: Treno non trovato tramite id_convoglio");
-    } else return $resultArray["id_treno"];
+
+    $row = $result->fetchRow();
+    if($row == 0 || $row == null){
+        Throw new Exception("Errore nella query: " . $query . " Impossibile prendere l'ultimo id inserito");
+    }
+    return $row["id_treno"];
+
+}
+function getOraPartenzaTreno($id_treno, $id_stazione_partenza)
+{
+
+    $query = "SELECT ora_di_partenza FROM progetto1_Treno WHERE id_treno = $id_treno";
+    $result = EseguiQuery($query);
+    $row = $result->fetchRow();
+    return $row["ora_di_partenza"];
+
 }
 
 function EliminaTreno($id_treno)
@@ -108,6 +119,17 @@ function CreaTrenoParametrizzato($id_convoglio, $id_s1, $id_s2, $oraPart, $oraAr
     if(CheckTrenoPartenzaNelPassato($oraPart)){
         throw new Exception("Il treno parte in una determinata data nel passato, riprova con una data odierna o futura.");
     }
+
+
+    if(!Check_LocomotivaGiaInUso($oraPart, $oraArr, $id_convoglio)){
+        throw new Exception("Errore: La locomotiva è già in uso a quell'ora. Riprova con un altro orario");
+    }
+    if(!Check_CarrozzeGiaInUso($oraPart, $oraArr, $id_convoglio)){
+        throw new Exception("Errore: carrozza già in uso ");
+    }
+
+
+
 
     $query = "INSERT INTO progetto1_Treno 
           (ora_di_partenza, ora_di_arrivo, nome_stazione_partenza, nome_stazione_arrivo, id_ref_convoglio, posti_disponibili) 
@@ -173,60 +195,72 @@ function CheckTrenoPartenzaNelPassato($dataPartenza)
 
 }
 
+function UpdateArrivoTreno($id_treno){
+    //Prendiamo l'arrivo dalla sua subtratta e lo updatiamo nel suo table
+    $query1 = "SELECT * FROM progetto1_Subtratta where id_rif_treno = $id_treno order by id_subtratta desc limit 1";;
+    $result1 = EseguiQuery($query1);
+    $row1 = $result1->fetchRow();
+    $arrivo = $row1['ora_di_arrivo'];
+
+    $query2 = "SELECT * FROM progetto1_Subtratta where id_rif_treno = $id_treno order by id_subtratta asc limit 1";
+    $result2 = EseguiQuery($query2);
+    $row2 = $result2->fetchRow();
+    $partenza = $row2['ora_di_partenza'];
+
+
+    $query3 = "UPDATE progetto1_Treno SET ora_di_arrivo = '$arrivo', ora_di_partenza = '$partenza' WHERE id_treno = $id_treno";
+    $result3 = EseguiQuery($query3);
+    if(!$result3){
+        throw new Exception("Errore nella query: " . $query2 . " Impossibile aggiornare l'arrivo del treno");
+    }
+
+
+
+    return true;
+}
 function CheckEsistenzaTrenoInGiornata($id_convoglio, $oraPartTrenoRichiesto, $oraArrTrenoRichiesto)
 {
-    $dataPartenza = substr($oraPartTrenoRichiesto, 0, 10);
-    $oraPartenza = substr($oraPartTrenoRichiesto, 10, 3);
+    $dataPartenza = new DateTime($oraPartTrenoRichiesto);
+    $dataArrivo = new DateTime($oraArrTrenoRichiesto);
 
-    $dataArrivo = substr($oraArrTrenoRichiesto, 0, 10);
-    $oraArrivo = substr($oraArrTrenoRichiesto, 10, 3);
-
-    echo '<br>';
-
-    echo ' data partenza: ' . $dataPartenza;
-    echo ' data arrivo: ' . $dataArrivo;
-    echo ' ora partenza ' . $oraPartenza;
-    echo ' ora arrivo ' . $oraArrivo;
-
-    echo '<br>';
+    echo "<br>Data partenza: " . $dataPartenza->format('Y-m-d H:i:s');
+    echo "<br>Data arrivo: " . $dataArrivo->format('Y-m-d H:i:s');
 
     try {
-
-        $query = "SELECT * FROM progetto1_Treno where id_ref_convoglio = $id_convoglio";
+        $query = "SELECT * FROM progetto1_Treno WHERE id_ref_convoglio = $id_convoglio";
         $result = EseguiQuery($query);
 
         while ($row = $result->fetchRow()) {
-            $dataPartenzaStessoConvoglio =  substr($row['ora_di_partenza'], 0, 10);
-            $dataArrivoStessoConvoglio = substr($row['ora_di_arrivo'], 0, 10);
+            $partenzaDB = new DateTime($row['ora_di_partenza']);
+            $arrivoDB = new DateTime($row['ora_di_arrivo']);
 
-            echo '<br>';
-            echo 'La data di partenza è di ' . $dataPartenza;
-            echo '<br>';
-            echo 'La data di partenza dello stesso convoglio è di ' . $dataPartenzaStessoConvoglio;
-            echo '<br>';
+            // Stessa giornata?
+            $stessoGiornoPartenza = $dataPartenza->format('Y-m-d') === $partenzaDB->format('Y-m-d');
+            $stessoGiornoArrivo = $dataArrivo->format('Y-m-d') === $arrivoDB->format('Y-m-d');
 
-
-            if($dataPartenza == $dataPartenzaStessoConvoglio || $dataArrivo == $dataArrivoStessoConvoglio){
-                //i treni partono nella stessa giornata.  Bisogna verificare le 3 ore di differenza.
-                $oraPartenzaStessoConvoglio = substr($row['ora_di_partenza'], 10, 3);
-                $oraArrivoStessoConvoglio = substr($row['ora_di_arrivo'], 10, 3);
-
-                if(abs((int)$oraPartenza - (int)$oraPartenzaStessoConvoglio) < 3 || abs((int)$oraArrivo - (int)$oraArrivoStessoConvoglio) < 3 ){
-                    echo 'Lo stesso treno parte a meno di 3 ore di distanza dal precedente arrivo. Impossibile crearne uno';
-                    echo 'I dati sono: ' . $oraPartenza . ' & ' . $oraArrivo;
-                    echo 'I dati del treno già esistente sono ' . $oraPartenzaStessoConvoglio . ' & ' . $oraArrivoStessoConvoglio;
+            if ($stessoGiornoPartenza || $stessoGiornoArrivo) {
+                $diffOrePartenza = abs($dataPartenza->getTimestamp() - $partenzaDB->getTimestamp()) / 3600;
+                $diffOreArrivo = abs($dataArrivo->getTimestamp() - $arrivoDB->getTimestamp()) / 3600;
 
 
-                    Throw new Exception("Treno non creabile");
+                echo "<br>Diff Ore Partenza: " . $diffOrePartenza;
+                echo "<br>Diff Ore Arrivo: " . $diffOreArrivo;
+                echo '<br>';
+                if ($diffOrePartenza < 0.5 || $diffOreArrivo < 0.5) {
+                    echo "<br>Treno non creabile: meno di 30 min di distanza da uno stesso convoglio già in corsa.";
+                    echo "<br>Richiesta: " . $dataPartenza->format('H:i') . " / " . $dataArrivo->format('H:i');
+                    echo "<br>Esistente: " . $partenzaDB->format('H:i') . " / " . $arrivoDB->format('H:i');
+
+                    throw new Exception("Treno non creabile");
                 }
             }
         }
+
         return true;
 
-
-    } catch (Exception $e){
-
-        die("Errore nel programma.");
+    } catch (Exception $e) {
+        die("Errore rigo 262 funzioniTreno: " . $e->getMessage());
     }
 }
+
 ?>

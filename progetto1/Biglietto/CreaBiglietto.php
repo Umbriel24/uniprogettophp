@@ -8,19 +8,22 @@ require_once __DIR__ . '/../CartellaFunzioni/FunzioniConvoglio.php';
 require_once __DIR__ . '/../CartellaFunzioni/FunzioniLocomotrice.php';
 require_once __DIR__ . '/../CartellaFunzioni/FunzioniTratta.php';
 
-function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
+function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)
 {
 
 
     try {
         IniziaTransazione();
 
+        echo ' Tenta di updatare il treno';
+
         $posto_biglietto = UpdataPostiTreno($id_treno);
         if($posto_biglietto == null){
-            throw new Exception("Errore. Impossibile creare il biglietto");
+            throw new Exception("Errore. Impossibile creare il biglietto. il posto non esiste");
         }
 
-        Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno);
+        echo ' Tenta di inserire il biglietto';
+        Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo);
 
 
         CommittaTransazione();
@@ -32,22 +35,14 @@ function CreaBigliettoDaiDati($prezzo, $id_rif_utente, $id_treno)
 
 }
 
-function Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno)
+function Insert_progetto1_Biglietto($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)
 {
 
-    try {
-        IniziaTransazione();
-        $query = "INSERT INTO progetto1_Biglietto(posto_biglietto, prezzo, id_rif_utente, id_rif_treno) 
-        VALUES($posto_biglietto, $prezzo, $id_rif_utente, $id_treno)";
+        $query = "INSERT INTO progetto1_Biglietto(posto_biglietto, prezzo, id_rif_utente, id_rif_treno, id_stazione_partenza, id_stazione_arrivo) 
+        VALUES($posto_biglietto, $prezzo, $id_rif_utente, $id_treno, $id_stazione_partenza, $id_stazione_arrivo)";
+        echo 'query: ' . $query;
 
         EseguiQuery($query);
-        CommittaTransazione();
-
-    } catch (Exception $e) {
-        RollbackTransazione();
-        echo $e->getMessage() . " Errore 45 CreaBiglietto. La query è " . $query . '<br>' ;
-    }
-
 }
 
 //Diminuiamo di 1 i posti disponibili
